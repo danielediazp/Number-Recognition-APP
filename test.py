@@ -1,4 +1,4 @@
-"""Tests used to estimate the model accuracy. """
+"""Tests use to estimate the model accuracy in a real word situation. """
 
 import pytest
 import tensorflow as tf

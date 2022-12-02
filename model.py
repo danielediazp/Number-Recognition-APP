@@ -2,9 +2,6 @@
 
 
 import tensorflow as tf  # pip3 install tensorflow-macos
-import numpy as np  # pip3 install numpy
-import matplotlib.pyplot as plt  # pip3 install matplotlib
-import cv2 as cv  # pip3 install opencv-python
 
 
 #  Load data
@@ -34,6 +31,8 @@ model.add(tf.keras.layers.Flatten(input_shape=(28, 28)))
 #  activation "activation function" relu = rectified linear unit activation function.
 model.add(tf.keras.layers.Dense(units=100, activation=tf.nn.relu))
 model.add(tf.keras.layers.Dense(units=100, activation=tf.nn.relu))
+model.add(tf.keras.layers.Dense(units=100, activation=tf.nn.relu))
+model.add(tf.keras.layers.Dense(units=100, activation=tf.nn.relu))
 #  Output layer. This layers contains 10 neurons, and it uses the softmax activation function.
 #  softmax = takes the output of all the previous neurons and computes the probability.
 model.add(tf.keras.layers.Dense(units=10, activation=tf.nn.softmax))
@@ -44,7 +43,7 @@ model.compile(optimizer="adam", loss="sparse_categorical_crossentropy", metrics=
 #  Train the model
 #  Epochs = How many times the module is going to see the same data.
 #  How many times we repeat the process.
-model.fit(x_train, y_train, epochs=3)
+model.fit(x_train, y_train, epochs=10)
 loss, accuracy = model.evaluate(x_test, y_test)
 model.save("digits_recognition")
 

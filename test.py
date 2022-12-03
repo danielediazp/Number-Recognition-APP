@@ -149,4 +149,4 @@ def test_10():
     image = np.invert(np.array([image]))
     #  Request the model prediction.
     prediction = np.argmax(MODEL.predict(image))
-    assert prediction == 10
+    assert prediction == 0

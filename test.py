@@ -1,6 +1,5 @@
 """Tests use to estimate the model accuracy in a real word situation. """
 
-import pytest
 import tensorflow as tf
 import numpy as np
 import cv2 as cv
@@ -8,7 +7,7 @@ import cv2 as cv
 #  Load the model.
 MODEL = tf.keras.models.load_model("../Number-Recognition-APP/digits_recognition")
 
-
+# pylint: disable=locally-disabled, no-member
 def test_1_0():
     """Test an image that contain the handwritten number 1."""
     #  Load image

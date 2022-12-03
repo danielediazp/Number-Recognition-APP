@@ -7,7 +7,7 @@ import cv2 as cv
 #  Load the model.
 MODEL = tf.keras.models.load_model("../Number-Recognition-APP/digits_recognition")
 
-# pylint: disable=locally-disabled, no-member
+#  pylint: disable=locally-disabled, no-member
 def test_1_0():
     """Test an image that contain the handwritten number 1."""
     #  Load image
@@ -119,7 +119,7 @@ def test_7():
 
 
 def test_8():
-    "" "Test an image that contain the handwritten number 8."""
+    """Test an image that contain the handwritten number 8."""
     #  Load image
     image = cv.imread("../Number-Recognition-APP/test_images/eight.png")[:, :, 0]
     #  Convert the image to a numpy array and invert it

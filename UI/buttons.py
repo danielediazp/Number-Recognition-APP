@@ -19,12 +19,10 @@ class Button:
     """
 
     #  Button object set up
-    _FONT_PATH = "../Number-Recognition-APP/UI/assets/Fonts/Oswald-Bold.tff"
-    _BUTTON_BC_PATH = "UI/assets/BC/button.PNG"
-    _BUTTON_BC = pygame.image.load(_BUTTON_BC_PATH).convert_alpha()
-    _HOVER_COLOR = "White"
-    _BUTTON_COLOR = "#661B1C"
-    _TEXT_FONT = pygame.font.Font(_FONT_PATH, 30)
+    _FONT_PATH = "../UI/assets/Fonts/oswald/Oswald-Bold.ttf"
+    _BUTTON_BC_PATH = "../UI/assets/BC/button.PNG"
+    _HOVER_COLOR = "#39FF14"
+    _BUTTON_COLOR = "White"
 
     def __init__(self, label: str, coord: tuple[int, int]) -> None:
         """Construct the instance of a Button.
@@ -35,8 +33,10 @@ class Button:
         """
         self._label = label
         self._coord = coord
-        self._text = Button._TEXT_FONT.render(self._label, True, Button._BUTTON_COLOR)
-        self._rect = Button._BUTTON_BC.get_rect(center=coord)
+        self._button_bc = pygame.image.load(Button._BUTTON_BC_PATH).convert_alpha()
+        self._font = pygame.font.Font(Button._FONT_PATH, 30)
+        self._text = self._font.render(self._label, True, Button._BUTTON_COLOR)
+        self._rect = self._button_bc.get_rect(center=coord)
         self._text_rect = self._text.get_rect(center=coord)
 
     def update(self, surface: pygame.surface) -> None:
@@ -45,8 +45,8 @@ class Button:
         Args:
             surface: pygame screen surface.
         """
-        surface.blit(Button._BUTTON_BC, self._rect)
-        surface.blit(self._label, self._text_rect)
+        surface.blit(self._button_bc, self._rect)
+        surface.blit(self._text, self._text_rect)
 
     def check_surface(self, coord: tuple[int, int]) -> bool:
         """Checks the button surface. If the user mouse is on top of the button surface,
@@ -71,6 +71,6 @@ class Button:
         Args:
             coord: x,y position of the user mouse."""
         color = (
-            Button._HOVER_COLOR if self._check_surface(coord) else Button._BUTTON_COLOR
+            Button._HOVER_COLOR if self.check_surface(coord) else Button._BUTTON_COLOR
         )
-        self._text = Button._TEXT_FONT.render(self._label, True, color)
+        self._text = self._font.render(self._label, True, color)

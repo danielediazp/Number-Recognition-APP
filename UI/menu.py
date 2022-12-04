@@ -6,6 +6,8 @@ from pygame.locals import *
 from buttons import Button
 from configurations import RESOLUTION
 
+surface = pygame.display.set_mode(RESOLUTION)
+
 
 class MainMenu:
     """Class designed to represent the transition between states in the UI.
@@ -21,14 +23,13 @@ class MainMenu:
 
     #  Menu object set up
     _MAIN_MENU_DIMENSIONS = (1350, 850)
-    _MAIN_MENU_BC = "../Number-Recognition-APP/UI/BC/menubc.png"
+    _MAIN_MENU_BC = "../UI/assets/BC/menubc.png"
     _MAIN_MENU_TEXT = "Main Menu"
-    _MAIN_MENU_FONT_PATH = "../Number-Recognition-APP/UI/Fonts/Oswald-Light.ttf"
+    _MAIN_MENU_FONT_PATH = "../UI/assets/Fonts/oswald/Oswald-Extra-LightItalic.ttf"
     _MAIN_MENU_TEXT_COLOR = "#39FF14"
-    _MAIN_MENU_FONT = pygame.font.Font(_MAIN_MENU_FONT_PATH, 100)
     #  Menu buttons set up
     _PREDICTION_BUTTON_TEXT = "Predict ?"
-    _PREDICTION_BUTTON_POSITION = (55, 250)
+    _PREDICTION_BUTTON_POSITION = (655, 250)
     _ABOUT_BUTTON_TEXT = "About the project"
     _ABOUT_BUTTON_POSITION = (655, 400)
     _EXIT_BUTTON_TEXT = "Exit"
@@ -47,7 +48,9 @@ class MainMenu:
         )
         self._buttons = [self._prediction_button, self._about_button, self._exit_button]
         self._background = pygame.image.load(MainMenu._MAIN_MENU_BC)
-        self._title_text = MainMenu._MAIN_MENU_FONT.render(
+        self._font = pygame.font.Font(MainMenu._MAIN_MENU_FONT_PATH, 100)
+
+        self._title_text = self._font.render(
             MainMenu._MAIN_MENU_TEXT, True, MainMenu._MAIN_MENU_TEXT_COLOR
         )
 
@@ -59,15 +62,15 @@ class MainMenu:
         """
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.exit()
+                pygame.quit()
             if event.type == MOUSEBUTTONDOWN:
-                mouse_position = mouse.get_pos()
-            if self._prediction_button.check_surface(mouse_position):
-                pygame.exit()
-            elif self._about_button.check_surface(mouse_position):
-                pygame.exit()
-            elif self._exit_button.check_surface(mouse_position):
-                pygame.exit()
+                mouse_position = pygame.mouse.get_pos()
+                if self._prediction_button.check_surface(mouse_position):
+                    pygame.quit()
+                elif self._about_button.check_surface(mouse_position):
+                    pygame.quit()
+                elif self._exit_button.check_surface(mouse_position):
+                    pygame.quit()
 
     def change_button_color(
         self, mouse_position: tuple[int, int], surface: pygame.display
@@ -84,14 +87,20 @@ class MainMenu:
 
     def update(self) -> None:
         """Executes the Main Menu."""
-        surface = pygame.display.set_mode(RESOLUTION)
-        while True:
+        render = True
+        while render:
             surface.blit(self._background, (0, 0))
             surface.blit(self._title_text, (320, 50))
             self._prediction_button.update(surface)
             self._about_button.update(surface)
             self._exit_button.update(surface)
             self._handle_events()
-            mouse_position = mouse.get_pos()
+            mouse_position = pygame.mouse.get_pos()
             self.change_button_color(mouse_position, surface)
             pygame.display.update()
+
+
+if __name__ == "__main__":
+    pygame.init()
+    menu = MainMenu()
+    menu.update()

@@ -21,7 +21,7 @@ class Button:
     #  Class native members
     #  TO DO:
     #  Get a font, and add this to a button config.py file
-    _FONT_PATH = "../Number-Recognition-APP/UI/assets/Fonts/buttons_font.tff"
+    _FONT_PATH = "../Number-Recognition-APP/UI/assets/Fonts/Oswald-Bold.tff"
     _BUTTON_BC_PATH = "../Number-Recognition-APP/UI/assets/BC/main_menu.png"
     _BUTTON_BC = pygame.image.load(_BUTTON_BC_PATH).convert_alpha()
     _HOVER_COLOR = "White"

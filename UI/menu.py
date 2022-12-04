@@ -2,6 +2,7 @@
 
 #  pylint: disable=locally-disabled, import-error
 from typing import Any
+import sys
 import pygame
 from UI.button import Button
 
@@ -66,38 +67,38 @@ class MainMenu:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
+                sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_position = pygame.mouse.get_pos()
                 if self._prediction_button.check_surface(mouse_position):
                     pygame.quit()
+                    sys.exit()
                 elif self._about_button.check_surface(mouse_position):
                     pygame.quit()
+                    sys.exit()
                 elif self._exit_button.check_surface(mouse_position):
                     pygame.quit()
+                    sys.exit()
 
-    def change_button_color(
-        self, mouse_position: tuple[int, int], surface: pygame.display
-    ) -> None:
+    def change_button_color(self, mouse_position: tuple[int, int]) -> None:
         """Checks if the user mouse is hovering any buttons in the screen.
 
         Args:
             mouse_position: position of the user mouse.
-            surface: screen
         """
         for button in self._buttons:
             button.change_color(mouse_position)
-            button.update(surface)
+            button.update(self._surface)
 
     def update(self) -> None:
         """Executes the Main Menu."""
-        render = True
-        while render:
+        while True:
             self._surface.blit(self._background, (0, 0))
             self._surface.blit(self._title_text, MainMenu._MAIN_MENU_TEXT_POSITION)
             self._prediction_button.update(self._surface)
             self._about_button.update(self._surface)
             self._exit_button.update(self._surface)
             mouse_position = pygame.mouse.get_pos()
-            self.change_button_color(mouse_position, self._surface)
+            self.change_button_color(mouse_position)
             self._handle_events()
             pygame.display.update()

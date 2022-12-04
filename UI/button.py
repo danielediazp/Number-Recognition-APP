@@ -20,7 +20,7 @@ class Button:
 
     #  Button object set up
     _FONT_PATH = "../Number-Recognition-APP/UI/assets/Fonts/oswald/Oswald-Bold.ttf"
-    _BUTTON_BC_PATH = "../Number-Recognition-APP/UI/assets/BC/button2.png"
+    _BUTTON_BC_PATH = "../Number-Recognition-APP/UI/assets/Backgrounds/button2.png"
     _HOVER_COLOR = "#39FF14"
     _BUTTON_COLOR = "White"
 

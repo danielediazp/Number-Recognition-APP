@@ -21,20 +21,20 @@ class MainMenu:
     """
 
     #  Menu object set up
-    _MAIN_MENU_DIMENSIONS = (1350, 850)
-    _MAIN_MENU_BC = "../Number-Recognition-APP/UI/assets/BC/menubc.png"
+    _MAIN_MENU_BC = "../Number-Recognition-APP/UI/assets/Backgrounds/menubackground.png"
     _MAIN_MENU_TEXT = "Main Menu"
     _MAIN_MENU_FONT_PATH = (
         "../Number-Recognition-APP/UI/assets/Fonts/oswald/Oswald-Extra-LightItalic.ttf"
     )
     _MAIN_MENU_TEXT_COLOR = "#39FF14"
+    _MAIN_MENU_TEXT_POSITION = (80, 50)
     #  Menu buttons set up
     _PREDICTION_BUTTON_TEXT = "Predict ?"
-    _PREDICTION_BUTTON_POSITION = (655, 250)
+    _PREDICTION_BUTTON_POSITION = (250, 250)
     _ABOUT_BUTTON_TEXT = "About the project"
-    _ABOUT_BUTTON_POSITION = (655, 400)
+    _ABOUT_BUTTON_POSITION = (250, 400)
     _EXIT_BUTTON_TEXT = "Exit"
-    _EXIT_BUTTON_POSITION = (655, 550)
+    _EXIT_BUTTON_POSITION = (250, 550)
 
     def __init__(self, surface: pygame.display) -> None:
         """Construct the menu object."""
@@ -93,7 +93,7 @@ class MainMenu:
         render = True
         while render:
             self._surface.blit(self._background, (0, 0))
-            self._surface.blit(self._title_text, (320, 50))
+            self._surface.blit(self._title_text, MainMenu._MAIN_MENU_TEXT_POSITION)
             self._prediction_button.update(self._surface)
             self._about_button.update(self._surface)
             self._exit_button.update(self._surface)

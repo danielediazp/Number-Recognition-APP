@@ -14,10 +14,12 @@ else
     brew update
 fi
 
+# Install python3, pip3, and git
 brew install python3
 brew install pip3
 brew install git
 
+# Install python packages tensorflow, opencv, numpy, clustimage, tkinter, and termcolor
 pip3 install tensorflow
 pip3 install opencv-python
 pip3 install numpy
@@ -25,6 +27,7 @@ pip3 install clustimage
 pip3 install tkinter
 pip3 install termcolor
 
+# Install pygame for the GUI inerface
 pip3 install pygame
 
 printf "\n--- Dependencies installed! ---"

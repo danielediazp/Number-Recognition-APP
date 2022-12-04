@@ -16,7 +16,6 @@ fi
 
 # Install python3, pip3, and git
 brew install python3
-brew install pip3
 brew install git
 
 # Install python packages tensorflow, opencv, numpy, clustimage, tkinter, and termcolor

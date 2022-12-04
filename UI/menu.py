@@ -1,14 +1,26 @@
-"""Class that define the behavior of the main menu"""
+"""Class that define the behavior of the main menu.
+
+    Typical usage:
+        pygame.init()
+        menu = MainMenu(surface=surface)
+        menu.update()
+    """
 
 #  pylint: disable=locally-disabled, import-error
 from typing import Any
 import sys
 import pygame
+from pygame.locals import *
 from UI.button import Button
+from UI.prediction_window import PredictionWindow
+from UI.about_window import AboutWindow
+from UI.change_button_color import change_buttons_color
+
+
 
 
 #  pylint: disable=locally-disabled, no-member
-#  pylint: disable=locally-disabled, too-many-instance-attributes
+#  pylint: disable=locally-disabled, too-few-public-methods
 class MainMenu:
     """Class designed to represent the transition between states in the UI.
 
@@ -53,10 +65,6 @@ class MainMenu:
         self._background = pygame.image.load(MainMenu._MAIN_MENU_BC)
         self._font = pygame.font.Font(MainMenu._MAIN_MENU_FONT_PATH, 100)
 
-        self._title_text = self._font.render(
-            MainMenu._MAIN_MENU_TEXT, True, MainMenu._MAIN_MENU_TEXT_COLOR
-        )
-
     def _handle_events(self) -> Any:
         """Handles the events happening in the screen. If the button is clicked, then
         a transition occurs.
@@ -65,14 +73,17 @@ class MainMenu:
             Any transition
         """
         for event in pygame.event.get():
+            #  If the user quits by the window.
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
+                #  Get the user mouse position
                 mouse_position = pygame.mouse.get_pos()
+                #  Check all buttons.
                 if self._prediction_button.check_surface(mouse_position):
-                    pygame.quit()
-                    sys.exit()
+                    prediciton_window = PredictionWindow(self._surface)
+                    prediciton_window.update()
                 elif self._about_button.check_surface(mouse_position):
                     pygame.quit()
                     sys.exit()
@@ -80,25 +91,27 @@ class MainMenu:
                     pygame.quit()
                     sys.exit()
 
-    def change_button_color(self, mouse_position: tuple[int, int]) -> None:
-        """Checks if the user mouse is hovering any buttons in the screen.
-
-        Args:
-            mouse_position: position of the user mouse.
-        """
-        for button in self._buttons:
-            button.change_color(mouse_position)
-            button.update(self._surface)
-
     def update(self) -> None:
         """Executes the Main Menu."""
+        #  Render title
+        title_text = self._font.render(
+            MainMenu._MAIN_MENU_TEXT, True, MainMenu._MAIN_MENU_TEXT_COLOR
+        )
+
         while True:
+            #  Draw the background.
             self._surface.blit(self._background, (0, 0))
-            self._surface.blit(self._title_text, MainMenu._MAIN_MENU_TEXT_POSITION)
+            #  Draw the window title.
+            self._surface.blit(title_text, MainMenu._MAIN_MENU_TEXT_POSITION)
+            #  Draw the buttons.
             self._prediction_button.update(self._surface)
             self._about_button.update(self._surface)
             self._exit_button.update(self._surface)
+            #  Get the user mouse position.
             mouse_position = pygame.mouse.get_pos()
-            self.change_button_color(mouse_position)
+            #  Check if the user mouse is hovering a button.
+            change_buttons_color(self._buttons, mouse_position, self._surface)
+            #  Check for any event.
             self._handle_events()
+            #  Update the display.
             pygame.display.update()

@@ -18,9 +18,9 @@ class Button:
         change_color
     """
 
-    #  Class native members
+    #  Button object set up
     _FONT_PATH = "../Number-Recognition-APP/UI/assets/Fonts/Oswald-Bold.tff"
-    _BUTTON_BC_PATH = "../Number-Recognition-APP/UI/assets/BC/button.png"
+    _BUTTON_BC_PATH = "UI/assets/BC/button.PNG"
     _BUTTON_BC = pygame.image.load(_BUTTON_BC_PATH).convert_alpha()
     _HOVER_COLOR = "White"
     _BUTTON_COLOR = "#661B1C"
@@ -48,7 +48,7 @@ class Button:
         surface.blit(Button._BUTTON_BC, self._rect)
         surface.blit(self._label, self._text_rect)
 
-    def _check_surface(self, coord: tuple[int, int]) -> bool:
+    def check_surface(self, coord: tuple[int, int]) -> bool:
         """Checks the button surface. If the user mouse is on top of the button surface,
         it returns True.
 

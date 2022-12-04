@@ -12,7 +12,7 @@ if ! command -v brew ; then
 else
     printf "Brew was found... updating!\n"
     echo "--- Please be patient, this process can take a while! ---\n"
-    brew update
+    brew update --verbose
 fi
 
 # Install python3 and git
@@ -24,7 +24,6 @@ pip3 install tensorflow
 pip3 install opencv-python
 pip3 install numpy
 pip3 install clustimage
-pip3 install tkinter
 pip3 install termcolor
 
 # Install pygame for the GUI inerface

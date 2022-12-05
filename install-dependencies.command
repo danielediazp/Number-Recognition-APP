@@ -19,11 +19,13 @@ fi
 brew install python3
 brew install git
 
-# Install python packages tensorflow, opencv, numpy, clustimage, and termcolor
+# Install python packages tensorflow, opencv, numpy, clustimage, resize-image, pillow, and termcolor
 pip3 install tensorflow
 pip3 install opencv-python
 pip3 install numpy
 pip3 install clustimage
+pip3 install resize-image
+pip3 install pillow
 pip3 install termcolor
 
 # Install pygame for the GUI inerface

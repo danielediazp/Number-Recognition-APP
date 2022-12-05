@@ -10,13 +10,10 @@
 from typing import Any
 import sys
 import pygame
-from pygame.locals import *
 from UI.button import Button
 from UI.prediction_window import PredictionWindow
 from UI.about_window import AboutWindow
 from UI.change_button_color import change_buttons_color
-
-
 
 
 #  pylint: disable=locally-disabled, no-member

@@ -63,10 +63,11 @@ class PredictionWindow:
     def update(self) -> None:
         """Executes the Prediction Window."""
         #  Render the title.
-        tile_text = self._font.render(PredictionWindow._WINDOW_TEXT, True, PredictionWindow._WINDOW_TEXT_COLOR)
+        tile_text = self._font.render(
+            PredictionWindow._WINDOW_TEXT, True, PredictionWindow._WINDOW_TEXT_COLOR
+        )
 
         while True:
             self._surface.fill("Black")
             self._surface.blit(tile_text, PredictionWindow._WINDOW_TEXT_POSITION)
             pygame.display.update()
-

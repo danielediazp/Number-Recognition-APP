@@ -2,7 +2,7 @@
 
 import sys
 import pygame
-from UI.button import Button
+from .button import Button
 
 
 class AboutWindow:

@@ -3,7 +3,7 @@ Main Menu class, the Prediction Window class, and the About Window class."""
 
 #  pylint: disable=locally-disabled, import-error
 import pygame
-from UI.button import Button
+from .button import Button
 
 
 def change_buttons_color(

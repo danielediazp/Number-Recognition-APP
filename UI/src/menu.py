@@ -14,6 +14,7 @@ from .prediction_window import PredictionWindow
 from .about_window import AboutWindow
 from .change_button_color import change_buttons_color
 from .screen_state import CURRENT_STATE
+from .menu_buttons import MenuButton
 
 
 #  pylint: disable=locally-disabled, no-member
@@ -30,7 +31,7 @@ class MainMenu:
         update
     """
 
-    #  Menu object set up
+    #  Menu object set up.
     _MAIN_MENU_BC = "../Number-Recognition-APP/UI/assets/Backgrounds/menubackground.png"
     _MAIN_MENU_TEXT = "Main Menu"
     _MAIN_MENU_FONT_PATH = (
@@ -38,7 +39,7 @@ class MainMenu:
     )
     _MAIN_MENU_TEXT_COLOR = "#39FF14"
     _MAIN_MENU_TEXT_POSITION = (80, 50)
-    #  Menu buttons set up
+    #  Menu buttons set up.
     _PREDICTION_BUTTON_TEXT = "Predict ?"
     _PREDICTION_BUTTON_POSITION = (250, 250)
     _ABOUT_BUTTON_TEXT = "About the project"
@@ -47,13 +48,19 @@ class MainMenu:
     _EXIT_BUTTON_POSITION = (250, 550)
 
     def __init__(self, surface: pygame.display) -> None:
-        """Construct the menu object."""
+        """Construct the menu object.
+
+        Args:
+            surface: Initialize pygame display.
+        """
         self._surface = surface
-        self._prediction_button = Button(
-            MainMenu._PREDICTION_BUTTON_TEXT, MainMenu._PREDICTION_BUTTON_POSITION
+        self._prediction_button = MenuButton(
+            MainMenu._PREDICTION_BUTTON_TEXT,
+            MainMenu._PREDICTION_BUTTON_POSITION,
+            "Open Drawing Mode.",
         )
-        self._about_button = Button(
-            MainMenu._ABOUT_BUTTON_TEXT, MainMenu._ABOUT_BUTTON_POSITION
+        self._about_button = MenuButton(
+            MainMenu._ABOUT_BUTTON_TEXT, MainMenu._ABOUT_BUTTON_POSITION, ""
         )
         self._exit_button = Button(
             MainMenu._EXIT_BUTTON_TEXT, MainMenu._EXIT_BUTTON_POSITION
@@ -65,9 +72,6 @@ class MainMenu:
     def _handle_events(self) -> None:
         """Handles the events happening in the screen. If the button is clicked, then
         a transition occurs.
-
-        Returns:
-            Any transition
         """
         for event in pygame.event.get():
             #  If the user quits by the window.
@@ -75,7 +79,7 @@ class MainMenu:
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                #  Get the user mouse position
+                #  Get the user mouse position.
                 mouse_position = pygame.mouse.get_pos()
                 #  Check all buttons.
                 if self._prediction_button.check_surface(mouse_position):
@@ -83,9 +87,9 @@ class MainMenu:
                     CURRENT_STATE.append(prediction_window)
                     prediction_window.update()
                 elif self._about_button.check_surface(mouse_position):
-                    """about_window = AboutWindow()
+                    about_window = AboutWindow()
                     CURRENT_STATE.append(about_window)
-                    about_window.update()"""
+                    about_window.update()
                 elif self._exit_button.check_surface(mouse_position):
                     pygame.quit()
                     sys.exit()
@@ -95,7 +99,7 @@ class MainMenu:
         #  Set the window caption.
         pygame.display.set_caption(MainMenu._MAIN_MENU_TEXT)
 
-        #  Render title
+        #  Render title.
         title_text = self._font.render(
             MainMenu._MAIN_MENU_TEXT, True, MainMenu._MAIN_MENU_TEXT_COLOR
         )

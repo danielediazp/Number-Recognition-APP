@@ -1,2 +1,2 @@
 #  pylint: disable=locally-disabled, missing-module-docstring
-RESOLUTION = (1350, 750)
+RESOLUTION = (750, 750)

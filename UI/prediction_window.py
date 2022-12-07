@@ -103,7 +103,7 @@ class PredictionWindow:
         #  Aply the theshold to the image.
         (_, image) = cv.threshold(image, 128, 255, cv.THRESH_BINARY | cv.THRESH_OTSU)
         #  Normalize the image.
-        image = image / 255
+        #image = image / 255
         image = np.reshape(image, (1, 28, 28, 1))
         return image
 
@@ -122,6 +122,7 @@ class PredictionWindow:
         prediction = PredictionWindow._MODEL.predict(image)
         #  Get the prediction label.
         prediction_idx = np.argmax(prediction)
+        print(prediction_idx)
         return PredictionWindow._PREDICTION_LABELS[prediction_idx]
 
     def _display_prediction(self, prediction: str) -> None:

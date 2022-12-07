@@ -7,13 +7,13 @@
     """
 
 #  pylint: disable=locally-disabled, import-error
-from typing import Any
 import sys
 import pygame
-from UI.button import Button
-from UI.prediction_window import PredictionWindow
-from UI.about_window import AboutWindow
-from UI.change_button_color import change_buttons_color
+from .button import Button
+from .prediction_window import PredictionWindow
+from .about_window import AboutWindow
+from .change_button_color import change_buttons_color
+from .screen_state import CURRENT_STATE
 
 
 #  pylint: disable=locally-disabled, no-member
@@ -62,7 +62,7 @@ class MainMenu:
         self._background = pygame.image.load(MainMenu._MAIN_MENU_BC)
         self._font = pygame.font.Font(MainMenu._MAIN_MENU_FONT_PATH, 100)
 
-    def _handle_events(self) -> Any:
+    def _handle_events(self) -> None:
         """Handles the events happening in the screen. If the button is clicked, then
         a transition occurs.
 
@@ -80,16 +80,19 @@ class MainMenu:
                 #  Check all buttons.
                 if self._prediction_button.check_surface(mouse_position):
                     prediciton_window = PredictionWindow(self._surface)
+                    CURRENT_STATE.append(prediciton_window)
                     prediciton_window.update()
                 elif self._about_button.check_surface(mouse_position):
-                    pygame.quit()
-                    sys.exit()
+                    CURRENT_STATE.append(AboutWindow)
                 elif self._exit_button.check_surface(mouse_position):
                     pygame.quit()
                     sys.exit()
 
     def update(self) -> None:
         """Executes the Main Menu."""
+        #  Set the window capition.
+        pygame.display.set_caption(MainMenu._MAIN_MENU_TEXT)
+
         #  Render title
         title_text = self._font.render(
             MainMenu._MAIN_MENU_TEXT, True, MainMenu._MAIN_MENU_TEXT_COLOR

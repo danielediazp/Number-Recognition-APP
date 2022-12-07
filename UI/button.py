@@ -18,7 +18,7 @@ class Button:
         change_color
     """
 
-    #  Button object set up
+    #  Button object set up.
     _FONT_PATH = "../Number-Recognition-APP/UI/assets/Fonts/oswald/Oswald-Bold.ttf"
     _BUTTON_BC_PATH = "../Number-Recognition-APP/UI/assets/Backgrounds/button2.png"
     _HOVER_COLOR = "#39FF14"
@@ -28,8 +28,8 @@ class Button:
         """Construct the instance of a Button.
 
         Args:
-            label: The text inside the button
-            coord: x,y possition of the button in the pygame surface.
+            label: The text inside the button.
+            coord: x,y position of the button in the pygame surface.
         """
         self._label = label
         self._coord = coord
@@ -69,7 +69,8 @@ class Button:
         """Changes the color of the Button text if the user mouse is hovering the Button.
 
         Args:
-            coord: x,y position of the user mouse."""
+            coord: x,y position of the user mouse.
+        """
         color = (
             Button._HOVER_COLOR if self.check_surface(coord) else Button._BUTTON_COLOR
         )

@@ -7,13 +7,14 @@
     """
 
 #  pylint: disable=locally-disabled, import-error
-from typing import Any
+from collections import deque
 import sys
 import pygame
 from .button import Button
 from .prediction_window import PredictionWindow
 from .about_window import AboutWindow
 from .change_button_color import change_buttons_color
+from .screen_state import CURRENT_STATE
 
 
 #  pylint: disable=locally-disabled, no-member
@@ -62,7 +63,7 @@ class MainMenu:
         self._background = pygame.image.load(MainMenu._MAIN_MENU_BC)
         self._font = pygame.font.Font(MainMenu._MAIN_MENU_FONT_PATH, 100)
 
-    def _handle_events(self) -> Any:
+    def _handle_events(self) -> None:
         """Handles the events happening in the screen. If the button is clicked, then
         a transition occurs.
 
@@ -79,6 +80,7 @@ class MainMenu:
                 mouse_position = pygame.mouse.get_pos()
                 #  Check all buttons.
                 if self._prediction_button.check_surface(mouse_position):
+                    CURRENT_STATE.append(PredictionWindow)
                     prediciton_window = PredictionWindow(self._surface)
                     prediciton_window.update()
                 elif self._about_button.check_surface(mouse_position):

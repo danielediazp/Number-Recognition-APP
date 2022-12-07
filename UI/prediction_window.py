@@ -16,7 +16,7 @@ from PIL import Image
 from resizeimage import resizeimage
 from .button import Button
 from .configurations import RESOLUTION
-
+from .screen_state import CURRENT_STATE
 
 #  pylint: disable=locally-disabled, no-member
 #  pylint: disable=locally-disabled, too-few-public-methods
@@ -38,7 +38,7 @@ class PredictionWindow:
     #  Window label set up.
     _WINDOW_TEXT = "Writte Your Digits"
     _WINDOW_TEXT_COLOR = "#39FF14"
-    _WINDOW_TEXT_POSITION = (375, 10)
+    _WINDOW_TEXT_POSITION = (100, 10)
     _WINDOW_FONT_PATH = (
         "../Number-Recognition-APP/UI/assets/Fonts/oswald/Oswald-Heavy.ttf"
     )
@@ -77,13 +77,18 @@ class PredictionWindow:
         #  Set the screen name.
         pygame.display.set_caption("Prediction Window")
         #  Render the screen title.
-        # title_text = self._font.render(
-        # PredictionWindow._WINDOW_TEXT, True, PredictionWindow._WINDOW_TEXT_COLOR
-        # )
+        title_text = self._font.render(
+         PredictionWindow._WINDOW_TEXT, True, PredictionWindow._WINDOW_TEXT_COLOR
+        )
         #  Fill the wimdow with black.
         self._surface.fill("Black")
         #  Render the title in the screen.
-        # self._surface.blit(title_text, PredictionWindow._WINDOW_TEXT_POSITION)
+        self._surface.blit(title_text, PredictionWindow._WINDOW_TEXT_POSITION)
+        pygame.display.update()
+        #  Set the screen to sleep for 2 seconds.
+        time.sleep(0.40)
+        #  Fill the screen black again
+        self._surface.fill("Black")
         #  Update a certain part of the window.
         pygame.display.flip()
 
@@ -113,6 +118,10 @@ class PredictionWindow:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            if event.type == pygame.KEYDOWN:
+                CURRENT_STATE.pop()
+                CURRENT_STATE[0].update()
+
 
     def _predict_image(self) -> str:
         """"""
@@ -141,7 +150,7 @@ class PredictionWindow:
         #  Update the screen.
         pygame.display.update()
         #  put the window to sleep for 2 seconds
-        time.sleep(2)
+        time.sleep(0.50)
 
     def update(self) -> None:
         """Executes the Prediction Window."""

@@ -3,7 +3,7 @@
 for more details check out run.py.
 """
 
-from .src import run
+from .src import execute
 
 
-__all__ = ("run")
+__all__ = ("execute")

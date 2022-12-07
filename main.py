@@ -1,6 +1,6 @@
 """This file runs the APP."""
 
-from UI import run
+from UI import execute
 
 if __name__ == "__main__":
-    run()
+    execute()

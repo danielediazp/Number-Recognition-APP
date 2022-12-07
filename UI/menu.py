@@ -7,7 +7,6 @@
     """
 
 #  pylint: disable=locally-disabled, import-error
-from collections import deque
 import sys
 import pygame
 from .button import Button
@@ -80,18 +79,20 @@ class MainMenu:
                 mouse_position = pygame.mouse.get_pos()
                 #  Check all buttons.
                 if self._prediction_button.check_surface(mouse_position):
-                    CURRENT_STATE.append(PredictionWindow)
                     prediciton_window = PredictionWindow(self._surface)
+                    CURRENT_STATE.append(prediciton_window)
                     prediciton_window.update()
                 elif self._about_button.check_surface(mouse_position):
-                    pygame.quit()
-                    sys.exit()
+                    CURRENT_STATE.append(AboutWindow)
                 elif self._exit_button.check_surface(mouse_position):
                     pygame.quit()
                     sys.exit()
 
     def update(self) -> None:
         """Executes the Main Menu."""
+        #  Set the window capition.
+        pygame.display.set_caption(MainMenu._MAIN_MENU_TEXT)
+
         #  Render title
         title_text = self._font.render(
             MainMenu._MAIN_MENU_TEXT, True, MainMenu._MAIN_MENU_TEXT_COLOR

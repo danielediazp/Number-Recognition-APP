@@ -86,7 +86,7 @@ class PredictionWindow:
         self._surface.blit(title_text, PredictionWindow._WINDOW_TEXT_POSITION)
         pygame.display.update()
         #  Set the screen to sleep for 2 seconds.
-        time.sleep(0.40)
+        time.sleep(0.60)
         #  Fill the screen black again
         self._surface.fill("Black")
         #  Update a certain part of the window.
@@ -108,7 +108,7 @@ class PredictionWindow:
         #  Aply the theshold to the image.
         (_, image) = cv.threshold(image, 128, 255, cv.THRESH_BINARY | cv.THRESH_OTSU)
         #  Normalize the image.
-        #image = image / 255
+        image = image / 255
         image = np.reshape(image, (1, 28, 28, 1))
         return image
 

@@ -1,11 +1,11 @@
 """Defines the transitions between Main Menu and Prediction Window.
 
     Typical usage:
-        prediction_window = PredictionWindow(surface=sufrace)
+        prediction_window = PredictionWindow(surface=surface)
         prediction_window.update()
 """
 
-#  pylint: disable=locally-disabled, import-error
+#  pylint: disable=locally-disabled, relative-beyond-top-level
 import sys
 import time
 import pygame
@@ -36,9 +36,9 @@ class PredictionWindow:
     _CLEAR_BUTTON_TEXT = "Clear Window"
     _CLEAR_BUTTON_POSITION = (1000, 700)
     #  Window label set up.
-    _WINDOW_TEXT = "Writte Your Digits"
+    _WINDOW_TEXT = "Write Your Digits"
     _WINDOW_TEXT_COLOR = "#39FF14"
-    _WINDOW_TEXT_POSITION = (100, 10)
+    _WINDOW_TEXT_POSITION = (145, 10)
     _WINDOW_FONT_PATH = (
         "../Number-Recognition-APP/UI/assets/Fonts/oswald/Oswald-Heavy.ttf"
     )
@@ -80,7 +80,7 @@ class PredictionWindow:
         title_text = self._font.render(
          PredictionWindow._WINDOW_TEXT, True, PredictionWindow._WINDOW_TEXT_COLOR
         )
-        #  Fill the wimdow with black.
+        #  Fill the window with black.
         self._surface.fill("Black")
         #  Render the title in the screen.
         self._surface.blit(title_text, PredictionWindow._WINDOW_TEXT_POSITION)
@@ -95,9 +95,9 @@ class PredictionWindow:
     def _surface_to_image(self) -> np.array:
         """Converts the pygame display into a numpy array. This function converts the pygame
         surface into a np array."""
-        #  Collect the pixeles from the screen.
+        #  Collect the pixels from the screen.
         pixels = pygame.image.tostring(self._surface, "RGBA")
-        #  Create a copy of the image pixeles in a buffer.
+        #  Create a copy of the image pixels in a buffer.
         image = Image.frombytes("RGBA", RESOLUTION, pixels)
         #  Resize the image to a 28x28 format.
         image = resizeimage.resize_cover(image, [28, 28])
@@ -105,7 +105,7 @@ class PredictionWindow:
         image = np.asarray(image)
         #  Convert the image to a gray scale.
         image = cv.cvtColor(image, cv.COLOR_RGB2GRAY)
-        #  Aply the theshold to the image.
+        #  Apply the threshold to the image.
         (_, image) = cv.threshold(image, 128, 255, cv.THRESH_BINARY | cv.THRESH_OTSU)
         #  Normalize the image.
         image = image / 255
@@ -187,7 +187,7 @@ class PredictionWindow:
 
             #  Check if the user is drawing.
             if pygame.mouse.get_pressed()[0]:
-                #  Get the user mouse positon.
+                #  Get the user mouse position.
                 mouse_position = pygame.mouse.get_pos()
                 #  Draw a circle in the screen.
                 pygame.draw.circle(

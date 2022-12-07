@@ -1,7 +1,7 @@
 """Defines the behavior of the buttons use throughout the app.
 
     Typical usage example:
-        exit_button =  Button(label= ("Exit"), coords=(640, 640))
+        exit_button =  Button(label= ("Exit"), coord=(640, 640))
         """
 
 import pygame

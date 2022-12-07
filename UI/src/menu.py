@@ -83,7 +83,9 @@ class MainMenu:
                     CURRENT_STATE.append(prediction_window)
                     prediction_window.update()
                 elif self._about_button.check_surface(mouse_position):
-                    CURRENT_STATE.append(AboutWindow)
+                    """about_window = AboutWindow()
+                    CURRENT_STATE.append(about_window)
+                    about_window.update()"""
                 elif self._exit_button.check_surface(mouse_position):
                     pygame.quit()
                     sys.exit()

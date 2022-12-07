@@ -35,6 +35,8 @@ class PredictionWindow:
     #  Clear button set up.
     _CLEAR_BUTTON_TEXT = "Clear Window"
     _CLEAR_BUTTON_POSITION = (1000, 700)
+    #  Window caption set up.
+    _WINDOW_CAPTION = "Prediction Window"
     #  Window label set up.
     _WINDOW_TEXT = "Write Your Digits"
     _WINDOW_TEXT_COLOR = "#39FF14"
@@ -75,7 +77,7 @@ class PredictionWindow:
     def _set_default_screen(self) -> None:
         """Sets the prediction drawing screen back to default after evert drawing."""
         #  Set the screen name.
-        pygame.display.set_caption("Prediction Window")
+        pygame.display.set_caption(PredictionWindow._WINDOW_CAPTION)
         #  Render the screen title.
         title_text = self._font.render(
          PredictionWindow._WINDOW_TEXT, True, PredictionWindow._WINDOW_TEXT_COLOR

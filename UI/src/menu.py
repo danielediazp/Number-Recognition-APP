@@ -1,4 +1,6 @@
-"""Class that define the behavior of the main menu.
+"""Class that define the behavior of the main menu. The Main Menu is the core
+window for the UI allowing the user to choose where to go. This window allows for the
+transaction between Main Menu Window to the Prediction Window and About Window.
 
     Typical usage:
         pygame.init()

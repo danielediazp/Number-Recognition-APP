@@ -2,12 +2,15 @@
 Main Menu class, the Prediction Window class, and the About Window class."""
 
 #  pylint: disable=locally-disabled, import-error
+#  pylint: disable=locally-disabled, unused-import
+#  pylint: disable=locally-disabled, bare-except
 import pygame
 from .button import Button
+from .menu_buttons import MenuButton
 
 
 def change_buttons_color(
-    buttons: list[Button], mouse_position: tuple[int, int], surface: pygame.display
+    buttons: list[MenuButton], mouse_position: tuple[int, int], surface: pygame.display
 ) -> None:
     """Checks if the user mouse is hovering any buttons in the screen.
 
@@ -17,5 +20,13 @@ def change_buttons_color(
         surface: Screen.
     """
     for button in buttons:
+        #  Change the color of the button if the user mouse is hovering it.
         button.change_color(mouse_position)
+        #  If it is a Menu Button, display the try description.
+        try:
+            button.display_description(mouse_position, surface)
+        except:
+            #  Else update the screen and continue
+            button.update(surface)
+            continue
         button.update(surface)

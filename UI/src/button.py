@@ -1,8 +1,8 @@
 """Defines the behavior of the buttons use throughout the app.
 
     Typical usage example:
-        exit_button =  Button(label= ("Exit"), coords=(640, 640))
-        """
+        exit_button =  Button(label= ("Exit"), coord=(640, 640))
+"""
 
 import pygame
 import pygame.font
@@ -20,9 +20,10 @@ class Button:
 
     #  Button object set up.
     _FONT_PATH = "../Number-Recognition-APP/UI/assets/Fonts/oswald/Oswald-Bold.ttf"
-    _BUTTON_BC_PATH = "../Number-Recognition-APP/UI/assets/Backgrounds/button2.png"
+    _BUTTON_BC_PATH = "../Number-Recognition-APP/UI/assets/Backgrounds/button_background.png"
     _HOVER_COLOR = "#39FF14"
     _BUTTON_COLOR = "White"
+    _BUTTON_TEXT_SIZE = 40
 
     def __init__(self, label: str, coord: tuple[int, int]) -> None:
         """Construct the instance of a Button.
@@ -34,7 +35,7 @@ class Button:
         self._label = label
         self._coord = coord
         self._button_bc = pygame.image.load(Button._BUTTON_BC_PATH).convert_alpha()
-        self._font = pygame.font.Font(Button._FONT_PATH, 30)
+        self._font = pygame.font.Font(Button._FONT_PATH, Button._BUTTON_TEXT_SIZE)
         self._text = self._font.render(self._label, True, Button._BUTTON_COLOR)
         self._rect = self._button_bc.get_rect(center=coord)
         self._text_rect = self._text.get_rect(center=coord)

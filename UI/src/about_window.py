@@ -6,7 +6,7 @@ from .button import Button
 
 
 class AboutWindow:
-    """Defines the behavior of the About WIndow.
+    """Defines the behavior of the About Window.
 
     Methods:
         __init__

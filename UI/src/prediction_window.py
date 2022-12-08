@@ -1,11 +1,17 @@
-"""Defines the transitions between Main Menu and Prediction Window.
+"""Defines the  behavior of the Prediction Window. The Prediction
+Window opens from the Main Menu Window. This window allows the user
+to draw their diggits in the display. Once the user draws their digits
+in the screen, the image gets pre process and fit into the neural network.
+The prediction in then display to the user. This window allows a two way
+transaction between the Main Menu window and itself. Also, allows for the
+transaction between the Prediction Window and Help Window.
 
     Typical usage:
-        prediction_window = PredictionWindow(surface=sufrace)
+        prediction_window = PredictionWindow(surface=surface)
         prediction_window.update()
 """
 
-#  pylint: disable=locally-disabled, import-error
+#  pylint: disable=locally-disabled, relative-beyond-top-level
 import sys
 import time
 import pygame
@@ -17,6 +23,8 @@ from resizeimage import resizeimage
 from .button import Button
 from .configurations import RESOLUTION
 from .screen_state import CURRENT_STATE
+from .change_button_color import change_buttons_color
+from .help_window import HelpWindow
 
 #  pylint: disable=locally-disabled, no-member
 #  pylint: disable=locally-disabled, too-few-public-methods
@@ -25,20 +33,28 @@ class PredictionWindow:
 
     Methods:
         __init__
+         _handle_events
+        _set_default_screen
+        _surface_to_image
+        _predict_image
+        _display_prediction
+        _handle_transaction
+        _transaction
         update
-        _handle_events
     """
 
     #  Back button set up.
     _BACK_BUTTON_TEXT = "Back"
-    _BACK_BUTTON_POSITION = (400, 700)
-    #  Clear button set up.
-    _CLEAR_BUTTON_TEXT = "Clear Window"
-    _CLEAR_BUTTON_POSITION = (1000, 700)
+    _BACK_BUTTON_POSITION = (180, 500)
+    #  Help button set up.
+    _HELP_BUTTON_TEXT = "Hep!"
+    _HELP_BUTTON_POSITION = (620, 500)
+    #  Window caption set up.
+    _WINDOW_CAPTION = "Prediction Window"
     #  Window label set up.
-    _WINDOW_TEXT = "Writte Your Digits"
+    _WINDOW_TEXT = "Write Your Digits"
     _WINDOW_TEXT_COLOR = "#39FF14"
-    _WINDOW_TEXT_POSITION = (100, 10)
+    _WINDOW_TEXT_POSITION = (145, 10)
     _WINDOW_FONT_PATH = (
         "../Number-Recognition-APP/UI/assets/Fonts/oswald/Oswald-Heavy.ttf"
     )
@@ -60,27 +76,48 @@ class PredictionWindow:
     #  Screen circle set up.
     _CIRCLE_COLOR = "#FFFFFF"
     _CIRCLE_RADIUS = 30
+    #  Transaction mode.
+    _TRANSACTION_MODE = True
+    _TRANSACTION_MODE_TEXT_0 = "Press any key to go"
+    _TRANSACTION_MODE_TEXT_1 = "back to drawing mode."
+    _TRANSACTION_MODE_TEXT_POSITION_0 = (100, 100)
+    _TRANSACTION_MODE_TEXT_POSITION_1 = (90, 200)
 
     def __init__(self, surface: pygame.display):
         self._surface = surface
         self._back_button = Button(
             PredictionWindow._BACK_BUTTON_TEXT, PredictionWindow._BACK_BUTTON_POSITION
         )
-        self._clear_button = Button(
-            PredictionWindow._CLEAR_BUTTON_TEXT, PredictionWindow._CLEAR_BUTTON_POSITION
+        self._help_button = Button(
+            PredictionWindow._HELP_BUTTON_TEXT, PredictionWindow._HELP_BUTTON_POSITION
         )
-        self._buttons = [self._back_button, self._clear_button]
+        self._buttons = [self._back_button, self._help_button]
         self._font = pygame.font.Font(PredictionWindow._WINDOW_FONT_PATH, 70)
+
+    def _handle_events(self) -> None:
+        """Handles all the events happening in the screen."""
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                #  If the user presses c, erase the screen.
+                if event.key == pygame.K_c:
+                    self._set_default_screen()
+                #  Otherwise enter transaction mode.
+                else:
+                    PredictionWindow._TRANSACTION_MODE = True
+                    self._transaction()
 
     def _set_default_screen(self) -> None:
         """Sets the prediction drawing screen back to default after evert drawing."""
         #  Set the screen name.
-        pygame.display.set_caption("Prediction Window")
+        pygame.display.set_caption(PredictionWindow._WINDOW_CAPTION)
         #  Render the screen title.
         title_text = self._font.render(
-         PredictionWindow._WINDOW_TEXT, True, PredictionWindow._WINDOW_TEXT_COLOR
+            PredictionWindow._WINDOW_TEXT, True, PredictionWindow._WINDOW_TEXT_COLOR
         )
-        #  Fill the wimdow with black.
+        #  Fill the window with black.
         self._surface.fill("Black")
         #  Render the title in the screen.
         self._surface.blit(title_text, PredictionWindow._WINDOW_TEXT_POSITION)
@@ -95,9 +132,9 @@ class PredictionWindow:
     def _surface_to_image(self) -> np.array:
         """Converts the pygame display into a numpy array. This function converts the pygame
         surface into a np array."""
-        #  Collect the pixeles from the screen.
+        #  Collect the pixels from the screen.
         pixels = pygame.image.tostring(self._surface, "RGBA")
-        #  Create a copy of the image pixeles in a buffer.
+        #  Create a copy of the image pixels in a buffer.
         image = Image.frombytes("RGBA", RESOLUTION, pixels)
         #  Resize the image to a 28x28 format.
         image = resizeimage.resize_cover(image, [28, 28])
@@ -105,26 +142,15 @@ class PredictionWindow:
         image = np.asarray(image)
         #  Convert the image to a gray scale.
         image = cv.cvtColor(image, cv.COLOR_RGB2GRAY)
-        #  Aply the theshold to the image.
+        #  Apply the threshold to the image.
         (_, image) = cv.threshold(image, 128, 255, cv.THRESH_BINARY | cv.THRESH_OTSU)
         #  Normalize the image.
         image = image / 255
         image = np.reshape(image, (1, 28, 28, 1))
         return image
 
-    def _handle_events(self) -> None:
-        """Handles all the events happening in the screen."""
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            if event.type == pygame.KEYDOWN:
-                CURRENT_STATE.pop()
-                CURRENT_STATE[0].update()
-
-
     def _predict_image(self) -> str:
-        """"""
+        """Fits the user drawing to the network."""
         #  Get the image.
         image = self._surface_to_image()
         #  Fit the image into the neural network.
@@ -149,8 +175,65 @@ class PredictionWindow:
         self._surface.blit(prediction_text, prediction_text_rect)
         #  Update the screen.
         pygame.display.update()
-        #  put the window to sleep for 2 seconds
+        #  put the window to sleep for 2 seconds.
         time.sleep(0.50)
+
+    def _handel_transaction(self) -> bool:
+        """Executes the transaction that the user wants to perform."""
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                PredictionWindow._TRANSACTION_MODE = False
+                break
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_position = pygame.mouse.get_pos()
+                if self._help_button.check_surface(mouse_position):
+                    help_window = HelpWindow(self._surface)
+                    CURRENT_STATE.append(help_window)
+                    help_window.update()
+                if self._back_button.check_surface(mouse_position):
+                    CURRENT_STATE.pop()
+                    CURRENT_STATE[0].update()
+
+    def _transaction(self) -> None:
+        """Allows the user to change the window state. The user clear the screen,
+        go back to the Main Menu Window, or open the Prediction Window.
+        """
+        #  Render the text.
+        transaction_mode_text_0 = self._font.render(
+            PredictionWindow._TRANSACTION_MODE_TEXT_0,
+            True,
+            PredictionWindow._WINDOW_TEXT_COLOR,
+        )
+        transaction_mode_text_1 = self._font.render(
+            PredictionWindow._TRANSACTION_MODE_TEXT_1,
+            True,
+            PredictionWindow._WINDOW_TEXT_COLOR,
+        )
+
+        while PredictionWindow._TRANSACTION_MODE:
+            #  Display the text.
+            self._surface.blit(
+                transaction_mode_text_0, PredictionWindow._TRANSACTION_MODE_TEXT_POSITION_0
+            )
+            self._surface.blit(
+                transaction_mode_text_1, PredictionWindow._TRANSACTION_MODE_TEXT_POSITION_1
+            )
+            #  Display the buttons.
+            self._help_button.update(self._surface)
+            self._back_button.update(self._surface)
+            #  Get the user mouse position.
+            mouse_position = pygame.mouse.get_pos()
+            #  Update the screen.
+            pygame.display.flip()
+            #  Check if the user mouse is hovering any button.
+            change_buttons_color(self._buttons, mouse_position, self._surface)
+            #  Check events.
+            self._handel_transaction()
+
+        self.update()
 
     def update(self) -> None:
         """Executes the Prediction Window."""
@@ -187,7 +270,7 @@ class PredictionWindow:
 
             #  Check if the user is drawing.
             if pygame.mouse.get_pressed()[0]:
-                #  Get the user mouse positon.
+                #  Get the user mouse position.
                 mouse_position = pygame.mouse.get_pos()
                 #  Draw a circle in the screen.
                 pygame.draw.circle(

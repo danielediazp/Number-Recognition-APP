@@ -19,7 +19,7 @@ class MenuButton(Button):
 
     #  Description text set up.
     _DESCRIPTION_TEXT_FONT_PATH = (
-        "../Number-Recognition-APP/UI/assets/Fonts/oswald/Oswald-Light.ttf"
+        "../Number-Recognition-APP/UI/assets/Fonts/oswald/Oswald-Demi-BoldItalic.ttf"
     )
     _DESCRIPTION_TEXT_FONT_COLOR = "#39FF14"
     _DESCRIPTION_TEXT_SIZE = 20
@@ -41,7 +41,7 @@ class MenuButton(Button):
             self._description, True, MenuButton._DESCRIPTION_TEXT_FONT_COLOR
         )
         self._description_rect = self._description_text.get_rect(
-            center=(coord[0] + 250, coord[1])
+            center=(coord[0] + 295, coord[1] + 10)
         )
 
     def display_description(

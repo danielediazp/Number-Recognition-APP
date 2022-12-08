@@ -9,7 +9,6 @@
 #  pylint: disable=locally-disabled, relative-beyond-top-level
 import sys
 import pygame
-from .button import Button
 from .prediction_window import PredictionWindow
 from .about_window import AboutWindow
 from .change_button_color import change_buttons_color
@@ -32,20 +31,24 @@ class MainMenu:
     """
 
     #  Menu object set up.
-    _MAIN_MENU_BC = "../Number-Recognition-APP/UI/assets/Backgrounds/menubackground.png"
-    _MAIN_MENU_TEXT = "Main Menu"
+    _MAIN_MENU_CAPTION = "Main Menu"
+    _MAIN_MENU_BC = "../Number-Recognition-APP/UI/assets/Backgrounds/MainMenu_background.png"
+    _MAIN_MENU_TEXT = "Digits Recognition"
     _MAIN_MENU_FONT_PATH = (
         "../Number-Recognition-APP/UI/assets/Fonts/oswald/Oswald-Extra-LightItalic.ttf"
     )
     _MAIN_MENU_TEXT_COLOR = "#39FF14"
-    _MAIN_MENU_TEXT_POSITION = (80, 50)
+    _MAIN_MENU_TEXT_POSITION = (93, 45)
     #  Menu buttons set up.
     _PREDICTION_BUTTON_TEXT = "Predict ?"
-    _PREDICTION_BUTTON_POSITION = (250, 250)
-    _ABOUT_BUTTON_TEXT = "About the project"
-    _ABOUT_BUTTON_POSITION = (250, 400)
+    _PREDICTION_BUTTON_POSITION = (210, 260)
+    _PREDICTION_BUTTON_DESCRIPTION = "Opens the drawing mode"
+    _ABOUT_BUTTON_TEXT = "About us"
+    _ABOUT_BUTTON_POSITION = (210, 410)
+    _ABOUT_BUTTON_DESCRIPTION = "Learn about the tools we use"
     _EXIT_BUTTON_TEXT = "Exit"
-    _EXIT_BUTTON_POSITION = (250, 550)
+    _EXIT_BUTTON_POSITION = (210, 560)
+    _EXIT_BUTTON_DESCRIPTION = "We are sorry to see you go"
 
     def __init__(self, surface: pygame.display) -> None:
         """Construct the menu object.
@@ -57,13 +60,17 @@ class MainMenu:
         self._prediction_button = MenuButton(
             MainMenu._PREDICTION_BUTTON_TEXT,
             MainMenu._PREDICTION_BUTTON_POSITION,
-            "Open Drawing Mode.",
+            MainMenu._PREDICTION_BUTTON_DESCRIPTION,
         )
         self._about_button = MenuButton(
-            MainMenu._ABOUT_BUTTON_TEXT, MainMenu._ABOUT_BUTTON_POSITION, ""
+            MainMenu._ABOUT_BUTTON_TEXT,
+            MainMenu._ABOUT_BUTTON_POSITION,
+            MainMenu._ABOUT_BUTTON_DESCRIPTION,
         )
-        self._exit_button = Button(
-            MainMenu._EXIT_BUTTON_TEXT, MainMenu._EXIT_BUTTON_POSITION
+        self._exit_button = MenuButton(
+            MainMenu._EXIT_BUTTON_TEXT,
+            MainMenu._EXIT_BUTTON_POSITION,
+            MainMenu._EXIT_BUTTON_DESCRIPTION,
         )
         self._buttons = [self._prediction_button, self._about_button, self._exit_button]
         self._background = pygame.image.load(MainMenu._MAIN_MENU_BC)
@@ -97,7 +104,7 @@ class MainMenu:
     def update(self) -> None:
         """Executes the Main Menu."""
         #  Set the window caption.
-        pygame.display.set_caption(MainMenu._MAIN_MENU_TEXT)
+        pygame.display.set_caption(MainMenu._MAIN_MENU_CAPTION)
 
         #  Render title.
         title_text = self._font.render(

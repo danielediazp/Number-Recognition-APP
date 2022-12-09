@@ -84,7 +84,9 @@ class PredictionWindow:
     _TRANSACTION_MODE_TEXT_POSITION_0 = (100, 100)
     _TRANSACTION_MODE_TEXT_POSITION_1 = (90, 200)
     #  Pause Window Mouse Tracker set up.
-    _MOUSE_TRACKER_IMAGE_PATH = "../Number-Recognition-APP/UI/assets/Backgrounds/pen.png"
+    _MOUSE_TRACKER_IMAGE_PATH = (
+        "../Number-Recognition-APP/UI/assets/Backgrounds/pen.png"
+    )
 
     def __init__(self, surface: pygame.display):
         self._surface = surface
@@ -224,10 +226,12 @@ class PredictionWindow:
             self._surface.fill("Black")
             #  Display the text.
             self._surface.blit(
-                transaction_mode_text_0, PredictionWindow._TRANSACTION_MODE_TEXT_POSITION_0
+                transaction_mode_text_0,
+                PredictionWindow._TRANSACTION_MODE_TEXT_POSITION_0,
             )
             self._surface.blit(
-                transaction_mode_text_1, PredictionWindow._TRANSACTION_MODE_TEXT_POSITION_1
+                transaction_mode_text_1,
+                PredictionWindow._TRANSACTION_MODE_TEXT_POSITION_1,
             )
             #  Display the buttons.
             self._help_button.update(self._surface)

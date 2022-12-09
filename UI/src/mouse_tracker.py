@@ -27,4 +27,5 @@ class MouseTracker:
 
     def update(self, coord: tuple[int, int], surface: pygame.display) -> None:
         """Draws the Mouse Tracker in the screen."""
-        surface.blit(self._image, coord)
+        image_rect = self._image.get_rect(center=coord)
+        surface.blit(self._image, image_rect)

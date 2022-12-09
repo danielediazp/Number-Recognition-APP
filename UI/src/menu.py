@@ -16,6 +16,7 @@ from .about_window import AboutWindow
 from .change_button_color import change_buttons_color
 from .screen_state import CURRENT_STATE
 from .menu_buttons import MenuButton
+from .mouse_tracker import MouseTracker
 
 
 #  pylint: disable=locally-disabled, no-member
@@ -34,7 +35,9 @@ class MainMenu:
 
     #  Menu object set up.
     _MAIN_MENU_CAPTION = "Main Menu"
-    _MAIN_MENU_BC = "../Number-Recognition-APP/UI/assets/Backgrounds/MainMenu_background.png"
+    _MAIN_MENU_BC = (
+        "../Number-Recognition-APP/UI/assets/Backgrounds/MainMenu_background.png"
+    )
     _MAIN_MENU_TEXT = "Digits Recognition"
     _MAIN_MENU_FONT_PATH = (
         "../Number-Recognition-APP/UI/assets/Fonts/oswald/Oswald-Extra-LightItalic.ttf"
@@ -51,6 +54,10 @@ class MainMenu:
     _EXIT_BUTTON_TEXT = "Exit"
     _EXIT_BUTTON_POSITION = (210, 560)
     _EXIT_BUTTON_DESCRIPTION = "We are sorry to see you go"
+    #  Mouse Tracker set up.
+    _MOUSE_TRACKER_IMAGE_PATH = (
+        "../Number-Recognition-APP/UI/assets/Backgrounds/pen.png"
+    )
 
     def __init__(self, surface: pygame.display) -> None:
         """Construct the menu object.
@@ -77,6 +84,7 @@ class MainMenu:
         self._buttons = [self._prediction_button, self._about_button, self._exit_button]
         self._background = pygame.image.load(MainMenu._MAIN_MENU_BC)
         self._font = pygame.font.Font(MainMenu._MAIN_MENU_FONT_PATH, 100)
+        self._mouse_tracker = MouseTracker(MainMenu._MOUSE_TRACKER_IMAGE_PATH)
 
     def _handle_events(self) -> None:
         """Handles the events happening in the screen. If the button is clicked, then
@@ -124,6 +132,8 @@ class MainMenu:
             self._exit_button.update(self._surface)
             #  Get the user mouse position.
             mouse_position = pygame.mouse.get_pos()
+            #  Display the mouse tracker.
+            self._mouse_tracker.update(mouse_position, self._surface)
             #  Check if the user mouse is hovering a button.
             change_buttons_color(self._buttons, mouse_position, self._surface)
             #  Check for any event.

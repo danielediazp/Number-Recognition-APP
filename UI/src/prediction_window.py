@@ -1,8 +1,8 @@
 """Defines the  behavior of the Prediction Window. The Prediction
 Window opens from the Main Menu Window. This window allows the user
-to draw their diggits in the display. Once the user draws their digits
-in the screen, the image gets pre process and fit into the neural network.
-The prediction in then display to the user. This window allows a two way
+to draw their digits in the display. Once the user draws their digits
+in the screen, the image gets pre-process and fit into the neural network.
+The prediction in then display to the user. This window allows a two-way
 transaction between the Main Menu window and itself. Also, allows for the
 transaction between the Prediction Window and Help Window.
 
@@ -11,7 +11,6 @@ transaction between the Prediction Window and Help Window.
         prediction_window.update()
 """
 
-#  pylint: disable=locally-disabled, relative-beyond-top-level
 import sys
 import time
 import pygame
@@ -25,6 +24,8 @@ from .configurations import RESOLUTION
 from .screen_state import CURRENT_STATE
 from .change_button_color import change_buttons_color
 from .help_window import HelpWindow
+from .mouse_tracker import MouseTracker
+
 
 #  pylint: disable=locally-disabled, no-member
 #  pylint: disable=locally-disabled, too-few-public-methods
@@ -38,8 +39,8 @@ class PredictionWindow:
         _surface_to_image
         _predict_image
         _display_prediction
-        _handle_transaction
-        _transaction
+        _handle_pause_menu
+        _pause_menu
         update
     """
 
@@ -82,6 +83,10 @@ class PredictionWindow:
     _TRANSACTION_MODE_TEXT_1 = "back to drawing mode."
     _TRANSACTION_MODE_TEXT_POSITION_0 = (100, 100)
     _TRANSACTION_MODE_TEXT_POSITION_1 = (90, 200)
+    #  Pause Window Mouse Tracker set up.
+    _MOUSE_TRACKER_IMAGE_PATH = (
+        "../Number-Recognition-APP/UI/assets/Backgrounds/pen.png"
+    )
 
     def __init__(self, surface: pygame.display):
         self._surface = surface
@@ -107,7 +112,7 @@ class PredictionWindow:
                 #  Otherwise enter transaction mode.
                 else:
                     PredictionWindow._TRANSACTION_MODE = True
-                    self._transaction()
+                    self._pause_menu()
 
     def _set_default_screen(self) -> None:
         """Sets the prediction drawing screen back to default after evert drawing."""
@@ -178,7 +183,7 @@ class PredictionWindow:
         #  put the window to sleep for 2 seconds.
         time.sleep(0.50)
 
-    def _handel_transaction(self) -> bool:
+    def _handel_pause_menu(self) -> None:
         """Executes the transaction that the user wants to perform."""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -197,7 +202,7 @@ class PredictionWindow:
                     CURRENT_STATE.pop()
                     CURRENT_STATE[0].update()
 
-    def _transaction(self) -> None:
+    def _pause_menu(self) -> None:
         """Allows the user to change the window state. The user clear the screen,
         go back to the Main Menu Window, or open the Prediction Window.
         """
@@ -207,31 +212,40 @@ class PredictionWindow:
             True,
             PredictionWindow._WINDOW_TEXT_COLOR,
         )
+
         transaction_mode_text_1 = self._font.render(
             PredictionWindow._TRANSACTION_MODE_TEXT_1,
             True,
             PredictionWindow._WINDOW_TEXT_COLOR,
         )
 
+        #  Create the mouse tracker object.
+        mouse_tracker = MouseTracker(PredictionWindow._MOUSE_TRACKER_IMAGE_PATH)
+
         while PredictionWindow._TRANSACTION_MODE:
+            self._surface.fill("Black")
             #  Display the text.
             self._surface.blit(
-                transaction_mode_text_0, PredictionWindow._TRANSACTION_MODE_TEXT_POSITION_0
+                transaction_mode_text_0,
+                PredictionWindow._TRANSACTION_MODE_TEXT_POSITION_0,
             )
             self._surface.blit(
-                transaction_mode_text_1, PredictionWindow._TRANSACTION_MODE_TEXT_POSITION_1
+                transaction_mode_text_1,
+                PredictionWindow._TRANSACTION_MODE_TEXT_POSITION_1,
             )
             #  Display the buttons.
             self._help_button.update(self._surface)
             self._back_button.update(self._surface)
             #  Get the user mouse position.
             mouse_position = pygame.mouse.get_pos()
+            #  Draw the mouse tracker.
+            mouse_tracker.update(mouse_position, self._surface)
             #  Update the screen.
             pygame.display.flip()
             #  Check if the user mouse is hovering any button.
             change_buttons_color(self._buttons, mouse_position, self._surface)
             #  Check events.
-            self._handel_transaction()
+            self._handel_pause_menu()
 
         self.update()
 

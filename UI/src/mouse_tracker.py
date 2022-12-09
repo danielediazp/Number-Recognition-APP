@@ -6,6 +6,7 @@
 
 import pygame
 
+
 #  pylint: disable=locally-disabled, too-few-public-methods
 #  pylint: disable=locally-disabled, undefined-variable
 class MouseTracker:
@@ -16,14 +17,14 @@ class MouseTracker:
         update
     """
 
-    def __init__(self, image: filePath) -> None:
+    def __init__(self, image_path: str) -> None:
         """Construct the mouse tracker object.
 
         Args:
-            image: File path to weathever the image is located.
+            image_path: File path to the image location.
         """
-        self._image = pygame.image.load(image)
+        self._image = pygame.image.load(image_path)
 
     def update(self, coord: tuple[int, int], surface: pygame.display) -> None:
         """Draws the Mouse Tracker in the screen."""
-        surface.blit(image, coord)
+        surface.blit(self._image, coord)

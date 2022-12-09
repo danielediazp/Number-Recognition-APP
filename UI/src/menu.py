@@ -56,7 +56,7 @@ class MainMenu:
     _EXIT_BUTTON_DESCRIPTION = "We are sorry to see you go"
     #  Mouse Tracker set up.
     _MOUSE_TRACKER_IMAGE_PATH = (
-        "../Number-Recognition-APP/UI/assets/Backgrounds/button.PNG"
+        "../Number-Recognition-APP/UI/assets/Backgrounds/pen.png"
     )
 
     def __init__(self, surface: pygame.display) -> None:

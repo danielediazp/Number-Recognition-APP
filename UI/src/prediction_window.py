@@ -1,8 +1,8 @@
 """Defines the  behavior of the Prediction Window. The Prediction
 Window opens from the Main Menu Window. This window allows the user
-to draw their diggits in the display. Once the user draws their digits
-in the screen, the image gets pre process and fit into the neural network.
-The prediction in then display to the user. This window allows a two way
+to draw their digits in the display. Once the user draws their digits
+in the screen, the image gets pre-process and fit into the neural network.
+The prediction in then display to the user. This window allows a two-way
 transaction between the Main Menu window and itself. Also, allows for the
 transaction between the Prediction Window and Help Window.
 
@@ -11,7 +11,6 @@ transaction between the Prediction Window and Help Window.
         prediction_window.update()
 """
 
-#  pylint: disable=locally-disabled, relative-beyond-top-level
 import sys
 import time
 import pygame
@@ -26,6 +25,7 @@ from .screen_state import CURRENT_STATE
 from .change_button_color import change_buttons_color
 from .help_window import HelpWindow
 
+
 #  pylint: disable=locally-disabled, no-member
 #  pylint: disable=locally-disabled, too-few-public-methods
 class PredictionWindow:
@@ -38,8 +38,8 @@ class PredictionWindow:
         _surface_to_image
         _predict_image
         _display_prediction
-        _handle_transaction
-        _transaction
+        _handle_pause_menu
+        _pause_menu
         update
     """
 
@@ -107,7 +107,7 @@ class PredictionWindow:
                 #  Otherwise enter transaction mode.
                 else:
                     PredictionWindow._TRANSACTION_MODE = True
-                    self._transaction()
+                    self._pause_menu()
 
     def _set_default_screen(self) -> None:
         """Sets the prediction drawing screen back to default after evert drawing."""
@@ -178,7 +178,7 @@ class PredictionWindow:
         #  put the window to sleep for 2 seconds.
         time.sleep(0.50)
 
-    def _handel_transaction(self) -> bool:
+    def _handel_pause_menu(self) -> None:
         """Executes the transaction that the user wants to perform."""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -197,7 +197,7 @@ class PredictionWindow:
                     CURRENT_STATE.pop()
                     CURRENT_STATE[0].update()
 
-    def _transaction(self) -> None:
+    def _pause_menu(self) -> None:
         """Allows the user to change the window state. The user clear the screen,
         go back to the Main Menu Window, or open the Prediction Window.
         """
@@ -231,7 +231,7 @@ class PredictionWindow:
             #  Check if the user mouse is hovering any button.
             change_buttons_color(self._buttons, mouse_position, self._surface)
             #  Check events.
-            self._handel_transaction()
+            self._handel_pause_menu()
 
         self.update()
 

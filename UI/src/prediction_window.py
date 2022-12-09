@@ -24,6 +24,7 @@ from .configurations import RESOLUTION
 from .screen_state import CURRENT_STATE
 from .change_button_color import change_buttons_color
 from .help_window import HelpWindow
+from .mouse_tracker import MouseTracker
 
 
 #  pylint: disable=locally-disabled, no-member
@@ -82,6 +83,8 @@ class PredictionWindow:
     _TRANSACTION_MODE_TEXT_1 = "back to drawing mode."
     _TRANSACTION_MODE_TEXT_POSITION_0 = (100, 100)
     _TRANSACTION_MODE_TEXT_POSITION_1 = (90, 200)
+    #  Pause Window Mouse Tracker set up.
+    _MOUSE_TRACKER_IMAGE_PATH = "../Number-Recognition-APP/UI/assets/Backgrounds/pen.png"
 
     def __init__(self, surface: pygame.display):
         self._surface = surface
@@ -207,13 +210,18 @@ class PredictionWindow:
             True,
             PredictionWindow._WINDOW_TEXT_COLOR,
         )
+
         transaction_mode_text_1 = self._font.render(
             PredictionWindow._TRANSACTION_MODE_TEXT_1,
             True,
             PredictionWindow._WINDOW_TEXT_COLOR,
         )
 
+        #  Create the mouse tracker object.
+        mouse_tracker = MouseTracker(PredictionWindow._MOUSE_TRACKER_IMAGE_PATH)
+
         while PredictionWindow._TRANSACTION_MODE:
+            self._surface.fill("Black")
             #  Display the text.
             self._surface.blit(
                 transaction_mode_text_0, PredictionWindow._TRANSACTION_MODE_TEXT_POSITION_0
@@ -226,6 +234,8 @@ class PredictionWindow:
             self._back_button.update(self._surface)
             #  Get the user mouse position.
             mouse_position = pygame.mouse.get_pos()
+            #  Draw the mouse tracker.
+            mouse_tracker.update(mouse_position, self._surface)
             #  Update the screen.
             pygame.display.flip()
             #  Check if the user mouse is hovering any button.

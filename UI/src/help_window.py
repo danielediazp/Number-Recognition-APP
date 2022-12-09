@@ -6,13 +6,15 @@ Window, or switch back to the Main menu state.
         help_window = HelpWindow(surface=surface)
 """
 
-import pygame
 import sys
+import pygame
 from .screen_state import CURRENT_STATE
 from .change_button_color import change_buttons_color
 from .button import Button
 
 
+#  pylint: disable=locally-disabled, no-member
+#  pylint: disable=locally-disabled, too-few-public-methods
 class HelpWindow:
     """Defines the behavior of the help window.
 
@@ -45,15 +47,21 @@ class HelpWindow:
             surface: screen
         """
         self._surface = surface
-        self._back_prediction = Button(HelpWindow._BACK_PREDICTION_TEXT, HelpWindow._BACK_PREDICTION_POSITION)
-        self._back_menu = Button(HelpWindow._BACK_MENU_TEXT, HelpWindow._BACK_MENU_POSITION)
+        self._back_prediction = Button(
+            HelpWindow._BACK_PREDICTION_TEXT, HelpWindow._BACK_PREDICTION_POSITION
+        )
+        self._back_menu = Button(
+            HelpWindow._BACK_MENU_TEXT, HelpWindow._BACK_MENU_POSITION
+        )
         self._buttons = [self._back_menu, self._back_prediction]
-        self._font = pygame.font.Font(HelpWindow._WINDOW_FONT_PATH, HelpWindow._WINDOW_FONT_SIZE)
+        self._font = pygame.font.Font(
+            HelpWindow._WINDOW_FONT_PATH, HelpWindow._WINDOW_FONT_SIZE
+        )
 
     def _handle_events(self) -> None:
         """Handle the events happening in the screen."""
         for event in pygame.event.get():
-            #  If the user quits by the window.
+            #  check for the user external quit.
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
@@ -77,7 +85,9 @@ class HelpWindow:
         pygame.display.set_caption(HelpWindow._WINDOW_CAPTION)
 
         #  Render the text.
-        tile_text = self._font.render(HelpWindow._WINDOW_TITLE, True, HelpWindow._WINDOW_FONT_SIZE)
+        tile_text = self._font.render(
+            HelpWindow._WINDOW_TITLE, True, HelpWindow._WINDOW_FONT_SIZE
+        )
 
         while True:
             #  Display the title.
@@ -93,4 +103,3 @@ class HelpWindow:
             self._handle_events()
             #  Update the display.
             pygame.display.update()
-

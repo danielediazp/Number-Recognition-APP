@@ -1,14 +1,20 @@
-"""This class define the behavior of ther Main menu buttons. This class is a child class
-of the Button class Please refer to button.py for details.
+"""This class define the behavior of the Main menu buttons. This class is a child class
+of the Button class Please refer to button.py for details. This child class provides the
+feature of displaying the button description once the user mouse hovers the button.
 
     Typical usage example:
-
+        exit_button = MenuButton(
+                                label=("Exit"),
+                                coord=(100,100),
+                                description=("Exit the UI")
+                                )
 """
 
 import pygame
 from .button import Button
 
 
+#  pylint: disable=locally-disabled, too-few-public-methods
 class MenuButton(Button):
     """Define the behavior and displays the Main Menu buttons.
 
@@ -30,7 +36,7 @@ class MenuButton(Button):
         Args:
            label: The text inside the button.
            coord: x,y position of the button in the pygame surface.
-           description: The text that will display once the button is hover by the user  mouse.
+           description: The text that will display once the mouse hovers the button.
         """
         Button.__init__(self, label, coord)
         self._description = description

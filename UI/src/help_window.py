@@ -1,6 +1,7 @@
 """Defines the behavior of the Help Window. The help window opens within
-the Predictio Window. The Help Window allows the user to clear the Prediction
-Window, or switch back to the Main menu state.
+the Prediction Window. The Help Window allows the user to return to the Prediction
+Window, or switch back to the Main menu state. The purpose of the Help Window is to
+explain the user how he should be drawing the digits in the scree.
 
     Typical usage:
         help_window = HelpWindow(surface=surface)
@@ -87,7 +88,7 @@ class HelpWindow:
         #  Reset the window.
         self._surface.fill("Black")
 
-        #  Set the captio.
+        #  Set the caption.
         pygame.display.set_caption(HelpWindow._WINDOW_CAPTION)
 
         #  Render the text.
@@ -95,7 +96,7 @@ class HelpWindow:
             HelpWindow._WINDOW_TITLE, True, HelpWindow._WINDOW_FONT_SIZE
         )
 
-        #  Cretae the Mouse Tracker object.
+        #  Create the Mouse Tracker object.
         mouse_tracker = MouseTracker(HelpWindow._MOUSE_TRACKER_IMAGE_PATH)
 
         while True:

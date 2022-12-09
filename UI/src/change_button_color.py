@@ -1,5 +1,7 @@
 """Changes the color of the buttons in the screen. This function is used in the
-Main Menu class, the Prediction Window class, and the About Window class."""
+within Main Menu class, the Prediction Window class, the About Window class,
+and the Help  Window class.
+"""
 
 #  pylint: disable=locally-disabled, import-error
 #  pylint: disable=locally-disabled, unused-import

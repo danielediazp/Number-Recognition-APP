@@ -1,4 +1,6 @@
 """CLass Defines the behavior of the mouse tracker in the screen.
+This class paste an image under the user cursor, and it moves the image
+relative to the user cursor movement.
 
     Typical usage:
         mouse_tracker = MouseTracker(image=(image_path))

@@ -27,20 +27,22 @@ class HelpWindow:
     """
 
     #  Help Window set up.
+    _WINDOW_BACKGROUND_PATH = (
+        "../Number-Recognition-APP/UI/assets/Backgrounds/helpWindow.png"
+    )
     _WINDOW_FONT_PATH = (
         "../Number-Recognition-APP/UI/assets/Fonts/oswald/Oswald-Heavy.ttf"
     )
     _WINDOW_FONT_SIZE = 40
     _WINDOW_CAPTION = "Help Window"
-    _WINDOW_BACKGROUND = ""
     _WINDOW_TITLE = "How to use?"
     _WINDOW_TITLE_POSITION = (145, 10)
     _WINDOW_TEXT_COLOR = "White"
     #  Buttons set up.
-    _BACK_MENU_TEXT = "Open Main Menu"
-    _BACK_MENU_POSITION = (620, 500)
+    _BACK_MENU_TEXT = "Main Menu"
+    _BACK_MENU_POSITION = (620, 600)
     _BACK_PREDICTION_TEXT = "Back"
-    _BACK_PREDICTION_POSITION = (180, 500)
+    _BACK_PREDICTION_POSITION = (180, 600)
     #  Mouse Tracker set up
     _MOUSE_TRACKER_IMAGE_PATH = (
         "../Number-Recognition-APP/UI/assets/Backgrounds/sadface.png"
@@ -63,6 +65,7 @@ class HelpWindow:
         self._font = pygame.font.Font(
             HelpWindow._WINDOW_FONT_PATH, HelpWindow._WINDOW_FONT_SIZE
         )
+        self._background = pygame.image.load(HelpWindow._WINDOW_BACKGROUND_PATH)
 
     def _handle_events(self) -> None:
         """Handle the events happening in the screen."""
@@ -100,7 +103,7 @@ class HelpWindow:
         mouse_tracker = MouseTracker(HelpWindow._MOUSE_TRACKER_IMAGE_PATH)
 
         while True:
-            self._surface.fill("Black")
+            self._surface.blit(self._background, (0, 0))
             #  Display the title.
             self._surface.blit(tile_text, HelpWindow._WINDOW_TITLE_POSITION)
             #  Display the buttons.

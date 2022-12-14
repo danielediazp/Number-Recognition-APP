@@ -22,15 +22,13 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
 
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
+  <a href="https://github.com/danielediazp/Number-Recognition-APP">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -39,14 +37,14 @@
   <p align="center">
     project_description
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/danielediazp/Number-Recognition-APP"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    <a href="https://github.com/danielediazp/Number-Recognition-APP/blob/main/main.py">View Demo</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
+    <a href="https://github.com/danielediazp/Number-Recognition-APP/issues">Report Bug</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    <a href="https://github.com/danielediazp/Number-Recognition-APP/issues">Request Feature</a>
   </p>
 </div>
 
@@ -69,10 +67,7 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -93,14 +88,11 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 ### Built With
 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* [![Python][Python3]][python-url]
+* [![PyGame][PyGame]][pygame-url]
+* [![Tensorflow][TensorFlow]][tensorflow-url]
+* [![OpenCV][OpenCV]][opencv-url]
+* [![NumPy][NumPy]][numpy-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -114,52 +106,23 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+To install dependencies on macOS, execute
 * npm
   ```sh
-  npm install npm@latest -g
+  sudo chmod +x install-dependencies.command
+  ./install-dependencies.command
   ```
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/danielediazp/Number-Recognition-APP.git
    ```
-3. Install NPM packages
+2. Execute the demo
    ```sh
-   npm install
+   python3 main.py
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
-
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -183,21 +146,18 @@ Don't forget to give the project a star! Thanks again!
 
 
 
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Robert Oganesian - [@roganesian](https://github.com/roganesian) - roganesian@uri.edu
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Daniel Diaz - [@danielediazp](https://github.com/danielediazp) - danieldiazp@uri.edu
+
+Vincent Zhuang - [@v1ncentzhuang](https://github.com/v1ncentzhuang) - vincent_zhuang@uri.edu
+
+</br>
+
+Project Link: [https://github.com/danielediazp/Number-Recognition-APP](https://github.com/danielediazp/Number-Recognition-APP)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -216,32 +176,22 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
+[contributors-shield]: https://img.shields.io/github/contributors/danielediazp/Number-Recognition-APP.svg?style=for-the-badge
+[contributors-url]: https://github.com/danielediazp/Number-Recognition-APP/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/danielediazp/Number-Recognition-APP.svg?style=for-the-badge
+[forks-url]: https://github.com/danielediazp/Number-Recognition-APP/network/members
+[stars-shield]: https://img.shields.io/github/stars/danielediazp/Number-Recognition-APP.svg?style=for-the-badge
+[stars-url]: https://github.com/danielediazp/Number-Recognition-APP/stargazers
+[issues-shield]: https://img.shields.io/github/issues/danielediazp/Number-Recognition-APP.svg?style=for-the-badge
+[issues-url]: https://github.com/danielediazp/Number-Recognition-APP/issues
 [product-screenshot]: images/screenshot.png
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[Vue-url]: https://vuejs.org/
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
+[Python3]: https://img.shields.io/badge/python3-000000?style=for-the-badge&logo=python&logoColor=#3776AB
+[python-url]: https://www.python.org/
+[PyGame]: https://img.shields.io/badge/PyGame-0769AD?style=for-the-badge
+[pygame-url]: https://www.pygame.org/
+[TensorFlow]: https://img.shields.io/badge/TensorFlow-35495E?style=for-the-badge&logo=tensorflow&logoColor=#FF6F00
+[tensorflow-url]: https://www.tensorflow.org/
+[OpenCV]:https://img.shields.io/badge/OpenCV-20232A?style=for-the-badge&logo=opencv&logoColor=5C3EE8
+[opencv-url]: https://opencv.org/
+[NumPy]: https://img.shields.io/badge/NumPy-deded9?style=for-the-badge&logo=numpy&logoColor=013243
+[numpy-url]: https://numpy.org/

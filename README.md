@@ -61,7 +61,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<a href="https://ibb.co/BZ1XzkL"><img src="https://i.ibb.co/Z8ZnL9d/Screen-Shot-2022-12-14-at-10-46-02-AM.jpg" alt="Nunmber Recognition GUI" border="0"></a>
 
 Our final project will be a number-recognition app that will have the capability of understanding and recognizing a number that is drawn. Essentially the user will be tasked with drawing a digit, where our app will have the responsibility of predicting the drawn digit.
 
@@ -84,8 +84,7 @@ Our final project will be a number-recognition app that will have the capability
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+The below instructions will get you a local copy up and running on your local machine for development and testing purposes. See [contributing](#contributing) for notes on how to contribute to the project.
 
 ### Prerequisites
 
@@ -175,7 +174,7 @@ Project Link: [https://github.com/danielediazp/Number-Recognition-APP](https://g
 [stars-url]: https://github.com/danielediazp/Number-Recognition-APP/stargazers
 [issues-shield]: https://img.shields.io/github/issues/danielediazp/Number-Recognition-APP.svg?style=for-the-badge
 [issues-url]: https://github.com/danielediazp/Number-Recognition-APP/issues
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: https://ibb.co/BZ1XzkL
 [Python3]: https://img.shields.io/badge/python3-000000?style=for-the-badge&logo=python&logoColor=#3776AB
 [python-url]: https://www.python.org/
 [PyGame]: https://img.shields.io/badge/PyGame-0769AD?style=for-the-badge

@@ -106,8 +106,8 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-To install dependencies on macOS, execute
-* npm
+To install dependencies on macOS, execute:
+
   ```sh
   sudo chmod +x install-dependencies.command
   ./install-dependencies.command

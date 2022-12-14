@@ -15,10 +15,10 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">Number-Recognition-APP</h3>
 
   <p align="center">
-    project_description
+    URI CSC310 Final Project
     <br />
     <a href="https://github.com/danielediazp/Number-Recognition-APP"><strong>Explore the docs »</strong></a>
     <br />
@@ -63,7 +63,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+Our final project will be a number-recognition app that will have the capability of understanding and recognizing a number that is drawn. Essentially the user will be tasked with drawing a digit, where our app will have the responsibility of predicting the drawn digit.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

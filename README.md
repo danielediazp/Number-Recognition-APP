@@ -89,12 +89,15 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-To install dependencies on macOS, execute:
-
-  ```sh
-  sudo chmod +x install-dependencies.command
-  ./install-dependencies.command
-  ```
+The install-dependencies script will install the following dependencies:
+* Homebrew
+* Git
+* Python3
+* PyGame
+* TensorFlow
+* OpenCV
+* NumPy
+* ClustImage
 
 ### Installation
 
@@ -102,7 +105,12 @@ To install dependencies on macOS, execute:
    ```sh
    git clone https://github.com/danielediazp/Number-Recognition-APP.git
    ```
-2. Execute the demo
+2. Install dependencies (macOS script)
+   ```sh
+    sudo chmod +x install-dependencies.command
+    ./install-dependencies.command
+    ```
+3. Execute the demo
    ```sh
    python3 main.py
    ```

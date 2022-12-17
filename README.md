@@ -97,6 +97,7 @@ The install-dependencies script will install the following dependencies:
 * OpenCV
 * NumPy
 * ClustImage
+* Pillow
 
 ### Installation
 

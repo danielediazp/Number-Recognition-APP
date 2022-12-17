@@ -32,9 +32,10 @@ class AboutWindow:
         self._background = pygame.image.load(
             "../Number-Recognition-APP/UI/assets/Backgrounds/MainMenu_background.png"
         )
-        self._font = pygame.font.Font(
+        self._title_font = pygame.font.Font(
             "../Number-Recognition-APP/UI/assets/Fonts/oswald/Oswald-Regular.ttf", 100
         )
+        self._body_font = pygame.font.Font("../Number-Recognition-APP/UI/assets/Fonts/oswald/Oswald-Regular.ttf", 20)
 
     def _handle_events(self) -> None:
         for event in pygame.event.get():
@@ -53,11 +54,13 @@ class AboutWindow:
 
     def update(self):
         pygame.display.set_caption("About")
-        title_text = self._font.render("About", True, "#39FF14")
+        title_text = self._title_font.render("About", True, "#39FF14")
+        body_text = self._body_font.render("A number-recognition app made in Python. For more information, visit the GitHub repository.", True, "#FFFFFF")
 
         while True:
             self._surface.blit(self._background, (0, 0))
             self._surface.blit(title_text, (93, 45))
+            self._surface.blit(body_text, (93, 275))
             self._github_button.update(self._surface)
             self._back_button.update(self._surface)
             mouse_position = pygame.mouse.get_pos()

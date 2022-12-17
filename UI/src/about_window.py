@@ -26,7 +26,7 @@ class AboutWindow:
 
     def __init__(self, surface: pygame.display) -> None:
         """Inits AboutWindow with the surface to draw on.
-        
+
         Args:
             surface (pygame.display): Surface to draw on.
         """
@@ -40,7 +40,9 @@ class AboutWindow:
         self._title_font = pygame.font.Font(
             "../Number-Recognition-APP/UI/assets/Fonts/oswald/Oswald-Regular.ttf", 100
         )
-        self._body_font = pygame.font.Font("../Number-Recognition-APP/UI/assets/Fonts/oswald/Oswald-Regular.ttf", 20)
+        self._body_font = pygame.font.Font(
+            "../Number-Recognition-APP/UI/assets/Fonts/oswald/Oswald-Regular.ttf", 20
+        )
 
     def _handle_events(self) -> None:
         """Handles the events of the About Window."""
@@ -62,7 +64,12 @@ class AboutWindow:
         """Uodates the About Window. Used to manage the state of the window."""
         pygame.display.set_caption("About")
         title_text = self._title_font.render("About", True, "#39FF14")
-        body_text = self._body_font.render("A number-recognition app made in Python. For more information, visit the GitHub repository.", True, "#FFFFFF")
+        body_text = self._body_font.render(
+            "A number-recognition app made in Python. "\
+            "For more information, visit the GitHub repository.",
+            True,
+            "#FFFFFF",
+        )
 
         while True:
             self._surface.blit(self._background, (0, 0))

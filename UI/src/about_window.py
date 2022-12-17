@@ -11,6 +11,7 @@ import pygame
 import webbrowser
 
 from .button import Button
+from .change_button_color import change_buttons_color
 from .screen_state import CURRENT_STATE
 
 class AboutWindow:
@@ -41,7 +42,17 @@ class AboutWindow:
                 elif self._back_button.check_surface(mouse_position):
                     CURRENT_STATE.pop()
                     CURRENT_STATE[0].update()
-            
     
     def update(self):
-        return None
+        pygame.display.set_caption("About")
+        title_text = self._font.render("About", True, "#39FF14")
+        
+        while True:
+            self._surface.blit(self._background, (0,0))
+            self._surface.blit(title_text, (93, 45))
+            self._github_button.update(self._surface)
+            self._back_button.update(self._surface)
+            mouse_position = pygame.mouse.get_pos()
+            change_buttons_color(self._buttons, mouse_position, self._surface)
+            self._handle_events()
+            pygame.display.update()

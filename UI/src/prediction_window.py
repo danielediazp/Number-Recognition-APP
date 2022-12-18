@@ -46,7 +46,7 @@ class PredictionWindow:
     _BACK_BUTTON_TEXT = "Back"
     _BACK_BUTTON_POSITION = (180, 500)
     #  Help button set up.
-    _HELP_BUTTON_TEXT = "Hep!"
+    _HELP_BUTTON_TEXT = "Help"
     _HELP_BUTTON_POSITION = (620, 500)
     #  Window caption set up.
     _WINDOW_CAPTION = "Prediction Window"

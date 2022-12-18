@@ -35,7 +35,7 @@ class HelpWindow:
     )
     _WINDOW_FONT_SIZE = 40
     _WINDOW_CAPTION = "Help Window"
-    _WINDOW_TITLE = "How to use?"
+    _WINDOW_TITLE = "User Guide"
     _WINDOW_TITLE_POSITION = (145, 10)
     _WINDOW_TEXT_COLOR = "White"
     #  Buttons set up.

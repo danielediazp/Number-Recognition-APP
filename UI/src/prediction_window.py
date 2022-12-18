@@ -70,7 +70,7 @@ class PredictionWindow:
         "Four",
         "Five",
         "Six",
-        "Sevent",
+        "Seven",
         "Eight",
         "Nine",
     ]

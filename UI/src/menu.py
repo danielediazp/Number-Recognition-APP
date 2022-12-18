@@ -45,15 +45,15 @@ class MainMenu:
     _MAIN_MENU_TEXT_COLOR = "#39FF14"
     _MAIN_MENU_TEXT_POSITION = (93, 45)
     #  Menu buttons set up.
-    _PREDICTION_BUTTON_TEXT = "Predict ?"
+    _PREDICTION_BUTTON_TEXT = "Predict"
     _PREDICTION_BUTTON_POSITION = (210, 260)
-    _PREDICTION_BUTTON_DESCRIPTION = "Opens the drawing mode"
-    _ABOUT_BUTTON_TEXT = "About us"
+    _PREDICTION_BUTTON_DESCRIPTION = "Opens the drawing window!"
+    _ABOUT_BUTTON_TEXT = "About"
     _ABOUT_BUTTON_POSITION = (210, 410)
-    _ABOUT_BUTTON_DESCRIPTION = "Learn about the tools we use"
+    _ABOUT_BUTTON_DESCRIPTION = "Learn more about the APP!"
     _EXIT_BUTTON_TEXT = "Exit"
     _EXIT_BUTTON_POSITION = (210, 560)
-    _EXIT_BUTTON_DESCRIPTION = "We are sorry to see you go"
+    _EXIT_BUTTON_DESCRIPTION = "Exit the APP!"
     #  Mouse Tracker set up.
     _MOUSE_TRACKER_IMAGE_PATH = (
         "../Number-Recognition-APP/UI/assets/Backgrounds/pen.png"

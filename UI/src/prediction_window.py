@@ -104,10 +104,8 @@ class PredictionWindow:
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.KEYDOWN:
-                #  If the user presses c, erase the screen.
                 if event.key == pygame.K_c:
                     self._set_default_screen()
-                #  Otherwise enter transaction mode.
                 else:
                     PredictionWindow._TRANSACTION_MODE = True
                     self._pause_menu()

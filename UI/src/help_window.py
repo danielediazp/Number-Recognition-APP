@@ -15,8 +15,6 @@ from .button import Button
 from .mouse_tracker import MouseTracker
 
 
-#  pylint: disable=locally-disabled, no-member
-#  pylint: disable=locally-disabled, too-few-public-methods
 class HelpWindow:
     """Defines the behavior of the help window.
 
@@ -70,14 +68,11 @@ class HelpWindow:
     def _handle_events(self) -> None:
         """Handle the events happening in the screen."""
         for event in pygame.event.get():
-            #  check for the user external quit.
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                #  Get the user mouse position.
                 mouse_position = pygame.mouse.get_pos()
-                #  Check all buttons.
                 if self._back_prediction.check_surface(mouse_position):
                     CURRENT_STATE.pop()
                     CURRENT_STATE[len(CURRENT_STATE) - 1].update()
@@ -88,34 +83,23 @@ class HelpWindow:
 
     def update(self) -> None:
         """Executes the Help Window."""
-        #  Reset the window.
         self._surface.fill("Black")
 
-        #  Set the caption.
         pygame.display.set_caption(HelpWindow._WINDOW_CAPTION)
 
-        #  Render the text.
         tile_text = self._font.render(
             HelpWindow._WINDOW_TITLE, True, HelpWindow._WINDOW_FONT_SIZE
         )
 
-        #  Create the Mouse Tracker object.
         mouse_tracker = MouseTracker(HelpWindow._MOUSE_TRACKER_IMAGE_PATH)
 
         while True:
             self._surface.blit(self._background, (0, 0))
-            #  Display the title.
             self._surface.blit(tile_text, HelpWindow._WINDOW_TITLE_POSITION)
-            #  Display the buttons.
             self._back_prediction.update(self._surface)
             self._back_menu.update(self._surface)
-            #  Get the user mouse position.
             mouse_position = pygame.mouse.get_pos()
-            #  Draw the Mouse Tracker in the screen.
             mouse_tracker.update(mouse_position, self._surface)
-            #  Check if the user mouse is hovering the mouse.
             change_buttons_color(self._buttons, mouse_position, self._surface)
-            #  Check the events.
             self._handle_events()
-            #  Update the display.
             pygame.display.update()

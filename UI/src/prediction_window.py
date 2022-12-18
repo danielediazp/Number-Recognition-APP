@@ -183,7 +183,7 @@ class PredictionWindow:
         #  put the window to sleep for 2 seconds.
         time.sleep(0.50)
 
-    def _handel_pause_menu(self) -> None:
+    def _handle_pause_menu(self) -> None:
         """Executes the transaction that the user wants to perform."""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -245,7 +245,7 @@ class PredictionWindow:
             #  Check if the user mouse is hovering any button.
             change_buttons_color(self._buttons, mouse_position, self._surface)
             #  Check events.
-            self._handel_pause_menu()
+            self._handle_pause_menu()
 
         self.update()
 

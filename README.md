@@ -110,7 +110,13 @@ The install-dependencies script will install the following dependencies:
     sudo chmod +x install-dependencies.command
     ./install-dependencies.command
     ```
-3. Execute the demo
+    OR
+
+    Install dependecies (assuming pip is installed)
+    ```sh
+    pip3 install -r requirements.txt
+    ```
+4. Execute the demo
    ```sh
    python3 main.py
    ```

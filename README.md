@@ -12,7 +12,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/danielediazp/Number-Recognition-APP">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://i.ibb.co/fNSbSyp/pen.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Number-Recognition-APP</h3>
@@ -61,7 +61,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<a href="https://ibb.co/BZ1XzkL"><img src="https://i.ibb.co/Z8ZnL9d/Screen-Shot-2022-12-14-at-10-46-02-AM.jpg" alt="Nunmber Recognition GUI" border="0"></a>
+<a href="https://github.com/danielediazp/Number-Recognition-APP"><img src="https://i.ibb.co/Z8ZnL9d/Screen-Shot-2022-12-14-at-10-46-02-AM.jpg" alt="Nunmber Recognition GUI" border="0"></a>
 
 Our final project will be a number-recognition app that will have the capability of understanding and recognizing a number that is drawn. Essentially the user will be tasked with drawing a digit, where our app will have the responsibility of predicting the drawn digit.
 

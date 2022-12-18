@@ -157,9 +157,7 @@ Project Link: [https://github.com/danielediazp/Number-Recognition-APP](https://g
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* [Deep Learning With Python](https://www.amazon.com/Deep-Learning-Python-Francois-Chollet/dp/1617294438/ref=asc_df_1617294438/?tag=hyprod-20&linkCode=df0&hvadid=266029226349&hvpos=&hvnetw=g&hvrand=17214741811611152932&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9002250&hvtargid=pla-356949152624&psc=1)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

@@ -65,6 +65,8 @@
 
 Our final project will be a number-recognition app that will have the capability of understanding and recognizing a number that is drawn. Essentially the user will be tasked with drawing a digit, where our app will have the responsibility of predicting the drawn digit.
 
+[![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1jw2MSIX1328CdmMkCx3T6OSERdp3YwAw?usp=sharing)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 

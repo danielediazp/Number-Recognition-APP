@@ -8,7 +8,6 @@ transaction between Main Menu Window to the Prediction Window and About Window.
         menu.update()
     """
 
-#  pylint: disable=locally-disabled, relative-beyond-top-level
 import sys
 import pygame
 from .prediction_window import PredictionWindow
@@ -18,9 +17,6 @@ from .screen_state import CURRENT_STATE
 from .menu_buttons import MenuButton
 from .mouse_tracker import MouseTracker
 
-
-#  pylint: disable=locally-disabled, no-member
-#  pylint: disable=locally-disabled, too-few-public-methods
 class MainMenu:
     """Class designed to represent the transition between states in the UI.
 
@@ -45,15 +41,15 @@ class MainMenu:
     _MAIN_MENU_TEXT_COLOR = "#39FF14"
     _MAIN_MENU_TEXT_POSITION = (93, 45)
     #  Menu buttons set up.
-    _PREDICTION_BUTTON_TEXT = "Predict ?"
+    _PREDICTION_BUTTON_TEXT = "Predict"
     _PREDICTION_BUTTON_POSITION = (210, 260)
-    _PREDICTION_BUTTON_DESCRIPTION = "Opens the drawing mode"
-    _ABOUT_BUTTON_TEXT = "About us"
+    _PREDICTION_BUTTON_DESCRIPTION = "Opens the drawing window!"
+    _ABOUT_BUTTON_TEXT = "About"
     _ABOUT_BUTTON_POSITION = (210, 410)
-    _ABOUT_BUTTON_DESCRIPTION = "Learn about the tools we use"
+    _ABOUT_BUTTON_DESCRIPTION = "Learn more about the APP!"
     _EXIT_BUTTON_TEXT = "Exit"
     _EXIT_BUTTON_POSITION = (210, 560)
-    _EXIT_BUTTON_DESCRIPTION = "We are sorry to see you go"
+    _EXIT_BUTTON_DESCRIPTION = "Exit the APP!"
     #  Mouse Tracker set up.
     _MOUSE_TRACKER_IMAGE_PATH = (
         "../Number-Recognition-APP/UI/assets/Backgrounds/pen.png"
@@ -91,14 +87,11 @@ class MainMenu:
         a transition occurs.
         """
         for event in pygame.event.get():
-            #  If the user quits by the window.
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                #  Get the user mouse position.
                 mouse_position = pygame.mouse.get_pos()
-                #  Check all buttons.
                 if self._prediction_button.check_surface(mouse_position):
                     prediction_window = PredictionWindow(self._surface)
                     CURRENT_STATE.append(prediction_window)
@@ -113,30 +106,20 @@ class MainMenu:
 
     def update(self) -> None:
         """Executes the Main Menu."""
-        #  Set the window caption.
         pygame.display.set_caption(MainMenu._MAIN_MENU_CAPTION)
 
-        #  Render title.
         title_text = self._font.render(
             MainMenu._MAIN_MENU_TEXT, True, MainMenu._MAIN_MENU_TEXT_COLOR
         )
 
         while True:
-            #  Draw the background.
             self._surface.blit(self._background, (0, 0))
-            #  Draw the window title.
             self._surface.blit(title_text, MainMenu._MAIN_MENU_TEXT_POSITION)
-            #  Draw the buttons.
             self._prediction_button.update(self._surface)
             self._about_button.update(self._surface)
             self._exit_button.update(self._surface)
-            #  Get the user mouse position.
             mouse_position = pygame.mouse.get_pos()
-            #  Display the mouse tracker.
             self._mouse_tracker.update(mouse_position, self._surface)
-            #  Check if the user mouse is hovering a button.
             change_buttons_color(self._buttons, mouse_position, self._surface)
-            #  Check for any event.
             self._handle_events()
-            #  Update the display.
             pygame.display.update()

@@ -27,8 +27,6 @@ from .help_window import HelpWindow
 from .mouse_tracker import MouseTracker
 
 
-#  pylint: disable=locally-disabled, no-member
-#  pylint: disable=locally-disabled, too-few-public-methods
 class PredictionWindow:
     """Defines the behavior of the Prediction Window.
 
@@ -70,7 +68,7 @@ class PredictionWindow:
         "Four",
         "Five",
         "Six",
-        "Sevent",
+        "Seven",
         "Eight",
         "Nine",
     ]
@@ -106,84 +104,60 @@ class PredictionWindow:
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.KEYDOWN:
-                #  If the user presses c, erase the screen.
                 if event.key == pygame.K_c:
                     self._set_default_screen()
-                #  Otherwise enter transaction mode.
                 else:
                     PredictionWindow._TRANSACTION_MODE = True
                     self._pause_menu()
 
     def _set_default_screen(self) -> None:
         """Sets the prediction drawing screen back to default after evert drawing."""
-        #  Set the screen name.
         pygame.display.set_caption(PredictionWindow._WINDOW_CAPTION)
-        #  Render the screen title.
         title_text = self._font.render(
             PredictionWindow._WINDOW_TEXT, True, PredictionWindow._WINDOW_TEXT_COLOR
         )
-        #  Fill the window with black.
         self._surface.fill("Black")
-        #  Render the title in the screen.
         self._surface.blit(title_text, PredictionWindow._WINDOW_TEXT_POSITION)
         pygame.display.update()
-        #  Set the screen to sleep for 2 seconds.
         time.sleep(0.60)
-        #  Fill the screen black again
         self._surface.fill("Black")
-        #  Update a certain part of the window.
         pygame.display.flip()
 
     def _surface_to_image(self) -> np.array:
         """Converts the pygame display into a numpy array. This function converts the pygame
         surface into a np array."""
-        #  Collect the pixels from the screen.
         pixels = pygame.image.tostring(self._surface, "RGBA")
-        #  Create a copy of the image pixels in a buffer.
         image = Image.frombytes("RGBA", RESOLUTION, pixels)
-        #  Resize the image to a 28x28 format.
         image = resizeimage.resize_cover(image, [28, 28])
-        #  Convert the image to a numpy array object.
         image = np.asarray(image)
-        #  Convert the image to a gray scale.
         image = cv.cvtColor(image, cv.COLOR_RGB2GRAY)
-        #  Apply the threshold to the image.
         (_, image) = cv.threshold(image, 128, 255, cv.THRESH_BINARY | cv.THRESH_OTSU)
-        #  Normalize the image.
         image = image / 255
         image = np.reshape(image, (1, 28, 28, 1))
         return image
 
     def _predict_image(self) -> str:
         """Fits the user drawing to the network."""
-        #  Get the image.
         image = self._surface_to_image()
-        #  Fit the image into the neural network.
         prediction = PredictionWindow._MODEL.predict(image)
-        #  Get the prediction label.
         prediction_idx = np.argmax(prediction)
         print(prediction_idx)
         return PredictionWindow._PREDICTION_LABELS[prediction_idx]
 
     def _display_prediction(self, prediction: str) -> None:
         """Prompt the number prediction to the user in the screen."""
-        #  Create the prediction text.
         text = f"Number is {prediction}"
         prediction_text = self._font.render(
             text, True, PredictionWindow._WINDOW_TEXT_COLOR
         )
-        #  Create a prediction text rect center in the middle of the screen.
         prediction_text_rect = prediction_text.get_rect(
             center=(RESOLUTION[0] / 2, RESOLUTION[1] / 2)
         )
-        #  Display the prediction.
         self._surface.blit(prediction_text, prediction_text_rect)
-        #  Update the screen.
         pygame.display.update()
-        #  put the window to sleep for 2 seconds.
         time.sleep(0.50)
 
-    def _handel_pause_menu(self) -> None:
+    def _handle_pause_menu(self) -> None:
         """Executes the transaction that the user wants to perform."""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -206,7 +180,6 @@ class PredictionWindow:
         """Allows the user to change the window state. The user clear the screen,
         go back to the Main Menu Window, or open the Prediction Window.
         """
-        #  Render the text.
         transaction_mode_text_0 = self._font.render(
             PredictionWindow._TRANSACTION_MODE_TEXT_0,
             True,
@@ -219,12 +192,10 @@ class PredictionWindow:
             PredictionWindow._WINDOW_TEXT_COLOR,
         )
 
-        #  Create the mouse tracker object.
         mouse_tracker = MouseTracker(PredictionWindow._MOUSE_TRACKER_IMAGE_PATH)
 
         while PredictionWindow._TRANSACTION_MODE:
             self._surface.fill("Black")
-            #  Display the text.
             self._surface.blit(
                 transaction_mode_text_0,
                 PredictionWindow._TRANSACTION_MODE_TEXT_POSITION_0,
@@ -233,68 +204,46 @@ class PredictionWindow:
                 transaction_mode_text_1,
                 PredictionWindow._TRANSACTION_MODE_TEXT_POSITION_1,
             )
-            #  Display the buttons.
             self._help_button.update(self._surface)
             self._back_button.update(self._surface)
-            #  Get the user mouse position.
             mouse_position = pygame.mouse.get_pos()
-            #  Draw the mouse tracker.
             mouse_tracker.update(mouse_position, self._surface)
-            #  Update the screen.
             pygame.display.flip()
-            #  Check if the user mouse is hovering any button.
             change_buttons_color(self._buttons, mouse_position, self._surface)
-            #  Check events.
-            self._handel_pause_menu()
+            self._handle_pause_menu()
 
         self.update()
 
     def update(self) -> None:
         """Executes the Prediction Window."""
-        #  Set the screen to default.
         self._set_default_screen()
 
-        #  Variables to keep track of the user draw.
         window_time = 0
         drawing_time = 0
         drawing = False
 
-        #  Execution loop.
         while True:
-            #  User has drawn something in the screen.
             if window_time - drawing_time >= 2 and drawing:
-                #  Make a prediction of the digit.
                 prediction = self._predict_image()
-                #  Prompt the prediction to the user.
                 self._display_prediction(prediction)
-                #  Set the screen bak to default.
                 self._set_default_screen()
-                #  Reset the screen timers.
                 window_time = 0
                 drawing_time = 0
-                #  Reset drawing.
                 drawing = False
                 continue
 
-            #  Get window time.
             window_time = time.process_time()
 
-            #  Check for events.
             self._handle_events()
 
-            #  Check if the user is drawing.
             if pygame.mouse.get_pressed()[0]:
-                #  Get the user mouse position.
                 mouse_position = pygame.mouse.get_pos()
-                #  Draw a circle in the screen.
                 pygame.draw.circle(
                     self._surface,
                     PredictionWindow._CIRCLE_COLOR,
                     mouse_position,
                     PredictionWindow._CIRCLE_RADIUS,
                 )
-                #  Update a portion of the pygame display.
                 pygame.display.flip()
-                #  Get drawing time.
                 drawing_time = time.process_time()
                 drawing = True

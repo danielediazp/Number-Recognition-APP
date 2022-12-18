@@ -5,12 +5,10 @@ from .menu import MainMenu
 from .configurations import RESOLUTION
 from .screen_state import CURRENT_STATE
 
-#  pylint: disable=locally-disabled, no-member
 
 
 def execute() -> None:
     """Executes the UI."""
-    #  Icon.
     icon = (
         "../Number-Recognition-APP/UI/assets/Backgrounds/pen.png"
     )

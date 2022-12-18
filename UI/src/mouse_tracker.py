@@ -9,8 +9,6 @@ relative to the user cursor movement.
 import pygame
 
 
-#  pylint: disable=locally-disabled, too-few-public-methods
-#  pylint: disable=locally-disabled, undefined-variable
 class MouseTracker:
     """Defines the behavior of the mouse screen tracker.
 

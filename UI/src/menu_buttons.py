@@ -14,7 +14,6 @@ import pygame
 from .button import Button
 
 
-#  pylint: disable=locally-disabled, too-few-public-methods
 class MenuButton(Button):
     """Define the behavior and displays the Main Menu buttons.
 
